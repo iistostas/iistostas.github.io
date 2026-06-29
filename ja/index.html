@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ブラウザフィンガープリント検査 - canvas/WebGL/フォント/タイムゾーン/エントロピー</title>
+<meta name="description" content="無料のオンラインブラウザフィンガープリント検査。canvas・WebGL・フォント・タイムゾーン・画面・User-Agent を読み取り、合成フィンガープリント ID と公開研究に基づく一意性（エントロピー）の目安を表示。すべてローカルで実行し、データは送信しません。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "ブラウザフィンガープリント検査",
+   "url": "https://iistostas.github.io/ja/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "ja",
+   "description": "無料のオンラインブラウザフィンガープリント検査。canvas・WebGL・フォント・タイムゾーン・画面・User-Agent を読み取り、合成フィンガープリント ID と公開研究に基づく一意性（エントロピー）の目安を表示。すべてローカルで実行し、データは送信しません。",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "ja",
+   "url": "https://iistostas.github.io/ja/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "ブラウザフィンガープリントとは？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ブラウザとデバイスが公開する属性（User-Agent、画面、タイムゾーン、フォント、canvas/WebGL 描画など）を組み合わせて作る識別子です。cookie がなくても、同じブラウザを訪問をまたいで認識できます。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "この検査は安全？データは送信される？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "送信されません。読み取りと計算はすべてブラウザ内の JavaScript で行われ、結果は本ページに表示されるだけで、サーバーへの送信も保存もしません。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "なぜ私のフィンガープリントは一意なの？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "単一の属性（例：タイムゾーン）は多くの人と同じでも、十数個の属性を組み合わせると値の空間が膨大になります。公開研究では大半のブラウザの組み合わせが一意で、ログインなしでもサイト横断で追跡され得ます。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "canvas フィンガープリントとは？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "同じ文字や図形を隠し canvas に描かせ、ピクセルを読み戻します。GPU・ドライバ・システムフォント・アンチエイリアスの違いで微妙だが安定した差が出るため、canvas は特定力が非常に高い信号です。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "シークレット／プライベートモードで隠せる？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ほぼ隠せません。プライベートモードは主に cookie と履歴を消しますが、canvas・WebGL・フォント・タイムゾーンなどの信号はそのまま公開されるため、それだけでは追跡を逃れられません。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "フィンガープリント追跡を減らすには？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "露出を減らす（一般的な設定にそろえる、一部 API を無効化）か、複数アカウント向けのフィンガープリントブラウザを使います。各プロファイルに独立かつ制御可能で整合した指紋を割り当て、アカウント同士をひも付けません。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN でフィンガープリントは変わる？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "変わりません。VPN は出口 IP を変えるだけで、canvas・フォント・タイムゾーン・User-Agent などブラウザ側の信号は変えないため、IP を変えても指紋は同じです。"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <strong>日本語</strong> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>ブラウザフィンガープリント検査</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_ja.webp"><img src="/img/cover_ja.png" alt="ブラウザフィンガープリント検査ツールの図" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>図：ブラウザフィンガープリント検査（canvas / WebGL / フォント / タイムゾーン / エントロピー）</figcaption></figure>
+<p>ボタンを押すと、ブラウザが知らないうちに公開しているフィンガープリント信号（canvas・WebGL・インストール済みフォント・タイムゾーン・画面・User-Agent）を読み取り、合成フィンガープリント ID を計算し、各信号がどれだけあなたを特定しやすいかを表示します。計算はすべてブラウザ内で行われ、<strong>データは一切送信されません</strong>。</p>
+<div class="tool"><button id="run" type="button">自分のフィンガープリントを調べる</button><div class="note">本ツールは完全にブラウザ内で動作し、データの送信・保存は行いません。</div><div id="fp"></div></div>
+<h2>ブラウザフィンガープリントを構成する信号</h2>
+<p>サイトは cookie がなくても、ブラウザが答える一見「無害」な質問を集めるだけで、かなり安定した識別子を組み立てられます。代表的な要素は、<code>canvas</code>/<code>WebGL</code> 描画時の GPU・ドライバの微差、インストール済みフォント一覧、タイムゾーン、画面解像度と色深度、言語、CPU コア数、デバイスメモリ、タッチ対応など。単独では一意でなくても、<strong>組み合わせる</strong>とたいてい一意になります。</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="図1：cookie を使わず、ブラウザが答える信号からサイトが指紋を組み立てる流れ"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>図1：cookie を使わず、ブラウザが答える信号からサイトが指紋を組み立てる流れ</figcaption></figure>
+<h2>各信号の特定力（エントロピー）</h2>
+<p>エントロピーは信号がどれだけ識別情報を持つかを示します（単位 bit・高いほど人を区別できる）。EFF の Panopticlick は平均約 <strong>18.1 bit</strong>、約 83.6% のフィンガープリントが一意と測定。AmIUnique（Laperdrix 他, 2016）は 11.8 万件で約 89.4% が一意でした。下表はこれら公開研究をまとめた<strong>大まかな目安</strong>です。</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_ja.webp"><img src="/img/board_ja.png" alt="各信号の相対的な特定力の図" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>図：単独では一意でなくても組み合わせれば一意——これが指紋追跡の仕組み</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="図2：各信号の相対的な特定力（エントロピー）。組み合わせれば通常あなたを特定できる"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>図2：各信号の相対的な特定力（エントロピー）。組み合わせれば通常あなたを特定できる</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>信号別フィンガープリントのエントロピー（2026 推定）</h2>
+<p>以下は公開フィンガープリント研究（EFF Panopticlick 2010、AmIUnique 2016）をまとめた <strong>2026 年の推定</strong>で、信号ごとのおおよその識別情報量を示します。 <em>推定・一次実測ではない・参考用。</em></p>
+<table><tr><th>信号</th><th>推定エントロピー（bit）</th><th>根拠</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Canvas ハッシュ</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>WebGL レンダラー</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>検出フォント数</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>画面と色深度</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>タイムゾーン</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>言語</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>よくある質問</h2>
+<details class="faq"><summary><strong>ブラウザフィンガープリントとは？</strong></summary>
+<p>ブラウザとデバイスが公開する属性（User-Agent、画面、タイムゾーン、フォント、canvas/WebGL 描画など）を組み合わせて作る識別子です。cookie がなくても、同じブラウザを訪問をまたいで認識できます。</p></details>
+<details class="faq"><summary><strong>この検査は安全？データは送信される？</strong></summary>
+<p>送信されません。読み取りと計算はすべてブラウザ内の JavaScript で行われ、結果は本ページに表示されるだけで、サーバーへの送信も保存もしません。</p></details>
+<details class="faq"><summary><strong>なぜ私のフィンガープリントは一意なの？</strong></summary>
+<p>単一の属性（例：タイムゾーン）は多くの人と同じでも、十数個の属性を組み合わせると値の空間が膨大になります。公開研究では大半のブラウザの組み合わせが一意で、ログインなしでもサイト横断で追跡され得ます。</p></details>
+<details class="faq"><summary><strong>canvas フィンガープリントとは？</strong></summary>
+<p>同じ文字や図形を隠し canvas に描かせ、ピクセルを読み戻します。GPU・ドライバ・システムフォント・アンチエイリアスの違いで微妙だが安定した差が出るため、canvas は特定力が非常に高い信号です。</p></details>
+<details class="faq"><summary><strong>シークレット／プライベートモードで隠せる？</strong></summary>
+<p>ほぼ隠せません。プライベートモードは主に cookie と履歴を消しますが、canvas・WebGL・フォント・タイムゾーンなどの信号はそのまま公開されるため、それだけでは追跡を逃れられません。</p></details>
+<details class="faq"><summary><strong>フィンガープリント追跡を減らすには？</strong></summary>
+<p>露出を減らす（一般的な設定にそろえる、一部 API を無効化）か、複数アカウント向けのフィンガープリントブラウザを使います。各プロファイルに独立かつ制御可能で整合した指紋を割り当て、アカウント同士をひも付けません。</p></details>
+<details class="faq"><summary><strong>VPN でフィンガープリントは変わる？</strong></summary>
+<p>変わりません。VPN は出口 IP を変えるだけで、canvas・フォント・タイムゾーン・User-Agent などブラウザ側の信号は変えないため、IP を変えても指紋は同じです。</p></details>
+<div class="sources"><h2>参考資料（公開研究）</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>関連</h2>
+<p><a href="https://bitantidetect.com/download/">BitBrowser（フィンガープリント/防関連ブラウザ）をダウンロード</a></p></div>
+</main>
+<footer>本ページの原理とエントロピー数値は下記の公開研究をまとめたもので、ツールが読むのはあなた自身のブラウザの実属性です。著者：林越。<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "あなたの合成フィンガープリント ID", "uniq": "一意性", "uniqval": "この値の組み合わせは特定につながりやすく、珍しい値ほど群衆の中から見分けられやすくなります。", "run": "自分のフィンガープリントを調べる", "note": "本ツールは完全にブラウザ内で動作し、データの送信・保存は行いません。", "dim": {"ua": "User-Agent", "platform": "プラットフォーム / OS", "langs": "言語", "screen": "画面と色深度", "tz": "タイムゾーン", "cpu": "CPU コア数", "mem": "デバイスメモリ", "touch": "タッチ点数", "canvas": "Canvas ハッシュ", "webglv": "WebGL ベンダー", "webglr": "WebGL レンダラー", "fonts": "検出フォント数", "audio": "音声サンプルレート", "cookie": "Cookie 有効", "dnt": "Do Not Track", "fpid": "合成フィンガープリント ID"}, "yes": "はい", "no": "いいえ", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

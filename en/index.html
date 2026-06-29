@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Browser Fingerprint Checker - canvas, WebGL, fonts, timezone and entropy test</title>
+<meta name="description" content="Free online browser fingerprint checker. Read your canvas, WebGL, font, timezone, screen and User-Agent fingerprint, get a composite fingerprint ID and a uniqueness (entropy) estimate based on public research. Runs locally, nothing is uploaded.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "Browser Fingerprint Checker",
+   "url": "https://iistostas.github.io/en/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "en",
+   "description": "Free online browser fingerprint checker. Read your canvas, WebGL, font, timezone, screen and User-Agent fingerprint, get a composite fingerprint ID and a uniqueness (entropy) estimate based on public research. Runs locally, nothing is uploaded.",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "en",
+   "url": "https://iistostas.github.io/en/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is a browser fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A browser fingerprint is an identifier built by combining attributes your browser and device expose (user agent, screen, timezone, fonts, canvas/WebGL rendering, and more). Even without cookies, a site can use it to recognise the same browser across visits."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is this checker safe? Does it upload my data?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. All reading and computation happen locally in your browser with JavaScript; results are shown only on this page and are never sent to any server or stored."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why is my fingerprint unique?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Any single attribute (like timezone) is shared by many people, but a dozen attributes combined create a huge value space. Public research shows most browsers have a unique combined fingerprint, so they can be tracked across sites without logging in."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is a canvas fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The browser draws the same text or shapes into a hidden canvas and the pixels are read back. Different GPUs, drivers, system fonts and anti-aliasing produce tiny but stable differences, making canvas one of the most identifying signals."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does incognito or private mode hide my fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Mostly no. Private mode clears cookies and local history, but canvas, WebGL, fonts, timezone and similar signals are still exposed, so private mode alone does not escape fingerprint tracking."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How can I reduce fingerprint tracking?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "You can shrink your exposure (use common settings, disable some APIs) or use an anti-detect browser built for multiple accounts - it assigns each browsing profile a separate, controllable and self-consistent fingerprint so accounts stay unlinked."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can a VPN change my fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. A VPN only changes your exit IP; it does not change canvas, fonts, timezone or user-agent browser signals, so your fingerprint stays the same after switching IP."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <strong>English</strong> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>Browser Fingerprint Checker</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_en.webp"><img src="/img/cover_en.png" alt="Browser fingerprint checker tool illustration" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Fig: Browser fingerprint checker (canvas / WebGL / fonts / timezone / entropy)</figcaption></figure>
+<p>Press the button to read the fingerprinting signals your browser quietly exposes - canvas, WebGL, installed fonts, timezone, screen and User-Agent - then get a composite fingerprint ID and see how easily each signal can single you out. Everything is computed locally in your browser; <strong>nothing is uploaded</strong>.</p>
+<div class="tool"><button id="run" type="button">Check my fingerprint</button><div class="note">This tool runs entirely in your browser. Nothing is uploaded or stored.</div><div id="fp"></div></div>
+<h2>What a browser fingerprint is made of</h2>
+<p>A site needs no cookie: from a handful of seemingly harmless questions your browser answers, it can assemble a fairly stable identifier. Common signals include subtle GPU and driver differences when rendering <code>canvas</code>/<code>WebGL</code>, your installed font list, timezone, screen resolution and colour depth, languages, CPU cores, device memory and touch support. No single value is unique, but <strong>combined</strong> they usually are.</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fig 1: how a site assembles a fingerprint from signals your browser answers, without using cookies"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>Fig 1: how a site assembles a fingerprint from signals your browser answers, without using cookies</figcaption></figure>
+<h2>How identifying each signal is (entropy)</h2>
+<p>Entropy measures how much identifying information a signal carries (in bits - higher means it separates people better). EFF's Panopticlick measured about <strong>18.1 bits</strong> on average, with roughly 83.6% of fingerprints unique; AmIUnique (Laperdrix et al., 2016) found about 89.4% unique across 118,000 samples. The table below gives a <strong>rough per-signal estimate</strong> synthesised from that public research.</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_en.webp"><img src="/img/board_en.png" alt="Relative identifying power of fingerprint signals" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Fig: no single value is unique, but combined they usually are - that is how fingerprint tracking works</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fig 2: relative identifying power (entropy) of each signal - combined, they are usually enough to pinpoint you"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>Fig 2: relative identifying power (entropy) of each signal - combined, they are usually enough to pinpoint you</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>Fingerprint entropy by signal (2026 estimate)</h2>
+<p>The following are <strong>2026 estimates</strong> synthesised from public fingerprinting research (EFF Panopticlick 2010, AmIUnique 2016), giving the approximate identifying information per signal; <em>estimate, not first-hand measurement, for reference only.</em></p>
+<table><tr><th>Signal</th><th>Est. entropy (bits)</th><th>Basis</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Canvas hash</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>WebGL renderer</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>Fonts detected</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>Screen and colour depth</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>Timezone</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>Languages</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary><strong>What is a browser fingerprint?</strong></summary>
+<p>A browser fingerprint is an identifier built by combining attributes your browser and device expose (user agent, screen, timezone, fonts, canvas/WebGL rendering, and more). Even without cookies, a site can use it to recognise the same browser across visits.</p></details>
+<details class="faq"><summary><strong>Is this checker safe? Does it upload my data?</strong></summary>
+<p>No. All reading and computation happen locally in your browser with JavaScript; results are shown only on this page and are never sent to any server or stored.</p></details>
+<details class="faq"><summary><strong>Why is my fingerprint unique?</strong></summary>
+<p>Any single attribute (like timezone) is shared by many people, but a dozen attributes combined create a huge value space. Public research shows most browsers have a unique combined fingerprint, so they can be tracked across sites without logging in.</p></details>
+<details class="faq"><summary><strong>What is a canvas fingerprint?</strong></summary>
+<p>The browser draws the same text or shapes into a hidden canvas and the pixels are read back. Different GPUs, drivers, system fonts and anti-aliasing produce tiny but stable differences, making canvas one of the most identifying signals.</p></details>
+<details class="faq"><summary><strong>Does incognito or private mode hide my fingerprint?</strong></summary>
+<p>Mostly no. Private mode clears cookies and local history, but canvas, WebGL, fonts, timezone and similar signals are still exposed, so private mode alone does not escape fingerprint tracking.</p></details>
+<details class="faq"><summary><strong>How can I reduce fingerprint tracking?</strong></summary>
+<p>You can shrink your exposure (use common settings, disable some APIs) or use an anti-detect browser built for multiple accounts - it assigns each browsing profile a separate, controllable and self-consistent fingerprint so accounts stay unlinked.</p></details>
+<details class="faq"><summary><strong>Can a VPN change my fingerprint?</strong></summary>
+<p>No. A VPN only changes your exit IP; it does not change canvas, fonts, timezone or user-agent browser signals, so your fingerprint stays the same after switching IP.</p></details>
+<div class="sources"><h2>References (public research)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>Related</h2>
+<p><a href="https://bitantidetect.com/download/">Download BitBrowser (anti-detect fingerprint browser)</a></p></div>
+</main>
+<footer>Fingerprinting concepts and entropy figures on this page are synthesised from the public research below; the tool reads the real attributes of your own browser. Author: Lin Yue.<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "Your composite fingerprint ID", "uniq": "Uniqueness", "uniqval": "This combination of values is likely identifying - the more unusual your values, the easier you are to single out from the crowd.", "run": "Check my fingerprint", "note": "This tool runs entirely in your browser. Nothing is uploaded or stored.", "dim": {"ua": "User-Agent", "platform": "Platform / OS", "langs": "Languages", "screen": "Screen and colour depth", "tz": "Timezone", "cpu": "CPU cores", "mem": "Device memory", "touch": "Touch points", "canvas": "Canvas hash", "webglv": "WebGL vendor", "webglr": "WebGL renderer", "fonts": "Fonts detected", "audio": "Audio sample rate", "cookie": "Cookies enabled", "dnt": "Do Not Track", "fpid": "Composite fingerprint ID"}, "yes": "yes", "no": "no", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

@@ -1,3 +1,7 @@
-# 比特浏览器
+# iistostas.github.io
 
-官网: https://bitantidetect.com/
+BitBrowser 12-language browser fingerprint checker (io tool page).
+
+Live: https://iistostas.github.io/
+
+MIT License.

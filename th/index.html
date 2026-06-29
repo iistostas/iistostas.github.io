@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>เครื่องตรวจลายนิ้วมือเบราว์เซอร์ - ทดสอบ canvas, WebGL, ฟอนต์, เขตเวลา และเอนโทรปี</title>
+<meta name="description" content="เครื่องตรวจลายนิ้วมือเบราว์เซอร์ออนไลน์ฟรี อ่านลายนิ้วมือ canvas, WebGL, ฟอนต์, เขตเวลา, หน้าจอ และ User-Agent ของคุณ พร้อมให้รหัสลายนิ้วมือรวมและประมาณความเป็นเอกลักษณ์ (เอนโทรปี) จากงานวิจัยสาธารณะ ทำงานในเครื่อง ไม่อัปโหลดข้อมูลใด ๆ">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "เครื่องตรวจลายนิ้วมือเบราว์เซอร์",
+   "url": "https://iistostas.github.io/th/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "th",
+   "description": "เครื่องตรวจลายนิ้วมือเบราว์เซอร์ออนไลน์ฟรี อ่านลายนิ้วมือ canvas, WebGL, ฟอนต์, เขตเวลา, หน้าจอ และ User-Agent ของคุณ พร้อมให้รหัสลายนิ้วมือรวมและประมาณความเป็นเอกลักษณ์ (เอนโทรปี) จากงานวิจัยสาธารณะ ทำงานในเครื่อง ไม่อัปโหลดข้อมูลใด ๆ",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "th",
+   "url": "https://iistostas.github.io/th/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "ลายนิ้วมือเบราว์เซอร์คืออะไร",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ลายนิ้วมือเบราว์เซอร์คือตัวระบุที่สร้างจากการรวมคุณสมบัติที่เบราว์เซอร์และอุปกรณ์เปิดเผย (user agent, หน้าจอ, เขตเวลา, ฟอนต์, การเรนเดอร์ canvas/WebGL และอื่น ๆ) แม้ไม่มีคุกกี้ เว็บไซต์ก็จดจำเบราว์เซอร์เดียวกันข้ามการเยี่ยมชมได้"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "เครื่องตรวจนี้ปลอดภัยไหม อัปโหลดข้อมูลหรือไม่",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ไม่อัปโหลด การอ่านและคำนวณทั้งหมดเกิดในเบราว์เซอร์ด้วย JavaScript ผลลัพธ์แสดงเฉพาะในหน้านี้ ไม่ส่งไปเซิร์ฟเวอร์ใด ๆ และไม่จัดเก็บ"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ทำไมลายนิ้วมือของฉันจึงไม่ซ้ำใคร",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "คุณสมบัติเดี่ยว (เช่น เขตเวลา) มีคนเหมือนกันมาก แต่เมื่อรวมคุณสมบัตินับสิบ พื้นที่ค่าจะใหญ่มาก งานวิจัยสาธารณะชี้ว่าเบราว์เซอร์ส่วนใหญ่มีลายนิ้วมือรวมที่ไม่ซ้ำ จึงถูกติดตามข้ามเว็บได้โดยไม่ต้องล็อกอิน"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ลายนิ้วมือ canvas คืออะไร",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "เบราว์เซอร์วาดข้อความหรือรูปเดียวกันลงใน canvas ที่ซ่อนไว้แล้วอ่านพิกเซลกลับมา GPU ไดรเวอร์ ฟอนต์ระบบ และการลบรอยหยักที่ต่างกันทำให้เกิดความต่างเล็กน้อยแต่คงที่ canvas จึงเป็นสัญญาณที่ระบุตัวได้แรงมาก"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "โหมดไม่ระบุตัวตนซ่อนลายนิ้วมือได้ไหม",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ส่วนใหญ่ไม่ได้ โหมดส่วนตัวล้างคุกกี้และประวัติเป็นหลัก แต่ canvas, WebGL, ฟอนต์, เขตเวลา ยังถูกเปิดเผยตามเดิม ลำพังโหมดส่วนตัวจึงหนีการติดตามด้วยลายนิ้วมือไม่ได้"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "จะลดการถูกติดตามด้วยลายนิ้วมืออย่างไร",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ลดการเปิดเผย (ใช้ค่าตั้งทั่วไป ปิดบาง API) หรือใช้เบราว์เซอร์ป้องกันการตรวจจับสำหรับหลายบัญชี ซึ่งกำหนดลายนิ้วมือแยก ควบคุมได้ และสอดคล้องให้แต่ละโปรไฟล์ ทำให้บัญชีไม่เชื่อมโยงกัน"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN เปลี่ยนลายนิ้วมือได้ไหม",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ไม่ได้ VPN เปลี่ยนเพียง IP ขาออก ไม่เปลี่ยน canvas, ฟอนต์, เขตเวลา หรือ user-agent ดังนั้นเปลี่ยน IP แล้วลายนิ้วมือก็ยังเหมือนเดิม"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <strong>ไทย</strong> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>เครื่องตรวจลายนิ้วมือเบราว์เซอร์</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_th.webp"><img src="/img/cover_th.png" alt="ภาพประกอบเครื่องตรวจลายนิ้วมือเบราว์เซอร์" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>รูป: เครื่องตรวจลายนิ้วมือเบราว์เซอร์ (canvas / WebGL / ฟอนต์ / เขตเวลา / เอนโทรปี)</figcaption></figure>
+<p>กดปุ่มเพื่ออ่านสัญญาณลายนิ้วมือที่เบราว์เซอร์ของคุณเปิดเผยอย่างเงียบ ๆ ได้แก่ canvas, WebGL, ฟอนต์ที่ติดตั้ง, เขตเวลา, หน้าจอ และ User-Agent แล้วคำนวณรหัสลายนิ้วมือรวม และดูว่าสัญญาณแต่ละอย่างระบุตัวคุณได้ง่ายเพียงใด ทุกอย่างคำนวณในเครื่องของคุณ <strong>ไม่มีการอัปโหลดข้อมูล</strong></p>
+<div class="tool"><button id="run" type="button">ตรวจลายนิ้วมือของฉัน</button><div class="note">เครื่องมือนี้ทำงานในเบราว์เซอร์ของคุณทั้งหมด ไม่อัปโหลดหรือเก็บข้อมูลใด ๆ</div><div id="fp"></div></div>
+<h2>สัญญาณที่ประกอบเป็นลายนิ้วมือเบราว์เซอร์</h2>
+<p>เว็บไซต์ไม่ต้องใช้คุกกี้ เพียงรวบรวมคำตอบที่ดูไม่มีพิษภัยจากเบราว์เซอร์ก็สร้างตัวระบุที่ค่อนข้างคงที่ได้ สัญญาณที่พบบ่อยได้แก่ ความต่างเล็กน้อยของ GPU และไดรเวอร์ตอนเรนเดอร์ <code>canvas</code>/<code>WebGL</code>, รายการฟอนต์ที่ติดตั้ง, เขตเวลา, ความละเอียดหน้าจอและความลึกสี, ภาษา, จำนวนคอร์ CPU, หน่วยความจำอุปกรณ์ และการรองรับสัมผัส แต่ละค่าไม่ซ้ำใคร แต่<strong>เมื่อรวมกัน</strong>มักจะกลายเป็นเอกลักษณ์</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="รูป 1: เว็บไซต์ประกอบลายนิ้วมือจากสัญญาณที่เบราว์เซอร์ตอบ โดยไม่ใช้คุกกี้ได้อย่างไร"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>รูป 1: เว็บไซต์ประกอบลายนิ้วมือจากสัญญาณที่เบราว์เซอร์ตอบ โดยไม่ใช้คุกกี้ได้อย่างไร</figcaption></figure>
+<h2>แต่ละสัญญาณระบุตัวได้แค่ไหน (เอนโทรปี)</h2>
+<p>เอนโทรปีวัดว่าสัญญาณให้ข้อมูลระบุตัวมากเพียงใด (หน่วยบิต ยิ่งสูงยิ่งแยกคนได้ดี) Panopticlick ของ EFF วัดได้เฉลี่ยราว <strong>18.1 บิต</strong> และลายนิ้วมือราว 83.6% ไม่ซ้ำกัน ส่วน AmIUnique (Laperdrix และคณะ, 2016) พบว่าราว 89.4% ไม่ซ้ำจาก 118,000 ตัวอย่าง ตารางด้านล่างเป็น<strong>ค่าประมาณคร่าว ๆ ต่อสัญญาณ</strong>ที่รวบรวมจากงานวิจัยสาธารณะดังกล่าว</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_th.webp"><img src="/img/board_th.png" alt="พลังระบุตัวเชิงเปรียบเทียบของสัญญาณลายนิ้วมือ" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>รูป: แต่ละค่าไม่ซ้ำ แต่เมื่อรวมกันมักไม่ซ้ำ นี่คือหลักการติดตามด้วยลายนิ้วมือ</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="รูป 2: พลังระบุตัวเชิงเปรียบเทียบ (เอนโทรปี) ของแต่ละสัญญาณ เมื่อรวมกันมักพอจะชี้ตัวคุณ"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>รูป 2: พลังระบุตัวเชิงเปรียบเทียบ (เอนโทรปี) ของแต่ละสัญญาณ เมื่อรวมกันมักพอจะชี้ตัวคุณ</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>เอนโทรปีลายนิ้วมือต่อสัญญาณ (ประมาณการ 2026)</h2>
+<p>ต่อไปนี้คือ<strong>ประมาณการปี 2026</strong> ที่รวบรวมจากงานวิจัยลายนิ้วมือสาธารณะ (EFF Panopticlick 2010, AmIUnique 2016) แสดงปริมาณข้อมูลระบุตัวโดยประมาณต่อสัญญาณ <em>ค่าประมาณ ไม่ใช่การวัดโดยตรง ใช้อ้างอิงเท่านั้น</em></p>
+<table><tr><th>สัญญาณ</th><th>เอนโทรปีประมาณ (บิต)</th><th>อ้างอิง</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>แฮช Canvas</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>ตัวเรนเดอร์ WebGL</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>ฟอนต์ที่ตรวจพบ</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>หน้าจอและความลึกสี</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>เขตเวลา</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>ภาษา</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>คำถามที่พบบ่อย</h2>
+<details class="faq"><summary><strong>ลายนิ้วมือเบราว์เซอร์คืออะไร</strong></summary>
+<p>ลายนิ้วมือเบราว์เซอร์คือตัวระบุที่สร้างจากการรวมคุณสมบัติที่เบราว์เซอร์และอุปกรณ์เปิดเผย (user agent, หน้าจอ, เขตเวลา, ฟอนต์, การเรนเดอร์ canvas/WebGL และอื่น ๆ) แม้ไม่มีคุกกี้ เว็บไซต์ก็จดจำเบราว์เซอร์เดียวกันข้ามการเยี่ยมชมได้</p></details>
+<details class="faq"><summary><strong>เครื่องตรวจนี้ปลอดภัยไหม อัปโหลดข้อมูลหรือไม่</strong></summary>
+<p>ไม่อัปโหลด การอ่านและคำนวณทั้งหมดเกิดในเบราว์เซอร์ด้วย JavaScript ผลลัพธ์แสดงเฉพาะในหน้านี้ ไม่ส่งไปเซิร์ฟเวอร์ใด ๆ และไม่จัดเก็บ</p></details>
+<details class="faq"><summary><strong>ทำไมลายนิ้วมือของฉันจึงไม่ซ้ำใคร</strong></summary>
+<p>คุณสมบัติเดี่ยว (เช่น เขตเวลา) มีคนเหมือนกันมาก แต่เมื่อรวมคุณสมบัตินับสิบ พื้นที่ค่าจะใหญ่มาก งานวิจัยสาธารณะชี้ว่าเบราว์เซอร์ส่วนใหญ่มีลายนิ้วมือรวมที่ไม่ซ้ำ จึงถูกติดตามข้ามเว็บได้โดยไม่ต้องล็อกอิน</p></details>
+<details class="faq"><summary><strong>ลายนิ้วมือ canvas คืออะไร</strong></summary>
+<p>เบราว์เซอร์วาดข้อความหรือรูปเดียวกันลงใน canvas ที่ซ่อนไว้แล้วอ่านพิกเซลกลับมา GPU ไดรเวอร์ ฟอนต์ระบบ และการลบรอยหยักที่ต่างกันทำให้เกิดความต่างเล็กน้อยแต่คงที่ canvas จึงเป็นสัญญาณที่ระบุตัวได้แรงมาก</p></details>
+<details class="faq"><summary><strong>โหมดไม่ระบุตัวตนซ่อนลายนิ้วมือได้ไหม</strong></summary>
+<p>ส่วนใหญ่ไม่ได้ โหมดส่วนตัวล้างคุกกี้และประวัติเป็นหลัก แต่ canvas, WebGL, ฟอนต์, เขตเวลา ยังถูกเปิดเผยตามเดิม ลำพังโหมดส่วนตัวจึงหนีการติดตามด้วยลายนิ้วมือไม่ได้</p></details>
+<details class="faq"><summary><strong>จะลดการถูกติดตามด้วยลายนิ้วมืออย่างไร</strong></summary>
+<p>ลดการเปิดเผย (ใช้ค่าตั้งทั่วไป ปิดบาง API) หรือใช้เบราว์เซอร์ป้องกันการตรวจจับสำหรับหลายบัญชี ซึ่งกำหนดลายนิ้วมือแยก ควบคุมได้ และสอดคล้องให้แต่ละโปรไฟล์ ทำให้บัญชีไม่เชื่อมโยงกัน</p></details>
+<details class="faq"><summary><strong>VPN เปลี่ยนลายนิ้วมือได้ไหม</strong></summary>
+<p>ไม่ได้ VPN เปลี่ยนเพียง IP ขาออก ไม่เปลี่ยน canvas, ฟอนต์, เขตเวลา หรือ user-agent ดังนั้นเปลี่ยน IP แล้วลายนิ้วมือก็ยังเหมือนเดิม</p></details>
+<div class="sources"><h2>แหล่งอ้างอิง (งานวิจัยสาธารณะ)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>ที่เกี่ยวข้อง</h2>
+<p><a href="https://bitantidetect.com/download/">ดาวน์โหลด BitBrowser (เบราว์เซอร์ลายนิ้วมือ/ป้องกันการเชื่อมโยง)</a></p></div>
+</main>
+<footer>หลักการลายนิ้วมือและตัวเลขเอนโทรปีในหน้านี้รวบรวมจากงานวิจัยสาธารณะด้านล่าง เครื่องมืออ่านคุณสมบัติจริงของเบราว์เซอร์ของคุณเอง ผู้เขียน: หลินเยฺว่ (林越)<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "รหัสลายนิ้วมือรวมของคุณ", "uniq": "ความเป็นเอกลักษณ์", "uniqval": "ชุดค่ารวมนี้น่าจะระบุตัวได้ ยิ่งค่าของคุณผิดปกติเท่าไร ก็ยิ่งถูกแยกออกจากฝูงชนได้ง่ายขึ้น", "run": "ตรวจลายนิ้วมือของฉัน", "note": "เครื่องมือนี้ทำงานในเบราว์เซอร์ของคุณทั้งหมด ไม่อัปโหลดหรือเก็บข้อมูลใด ๆ", "dim": {"ua": "User-Agent", "platform": "แพลตฟอร์ม / ระบบ", "langs": "ภาษา", "screen": "หน้าจอและความลึกสี", "tz": "เขตเวลา", "cpu": "คอร์ CPU", "mem": "หน่วยความจำอุปกรณ์", "touch": "จุดสัมผัส", "canvas": "แฮช Canvas", "webglv": "ผู้ผลิต WebGL", "webglr": "ตัวเรนเดอร์ WebGL", "fonts": "ฟอนต์ที่ตรวจพบ", "audio": "อัตราสุ่มเสียง", "cookie": "ใช้คุกกี้ได้", "dnt": "Do Not Track", "fpid": "รหัสลายนิ้วมือรวม"}, "yes": "ใช่", "no": "ไม่", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

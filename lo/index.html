@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="lo"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ເຄື່ອງມືກວດລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບ - canvas, WebGL, ຟອນ, ເຂດເວລາ ແລະ entropy</title>
+<meta name="description" content="ເຄື່ອງມືກວດລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບອອນລາຍຟຣີ. ອ່ານລາຍນິ້ວມື canvas, WebGL, ຟອນ, ເຂດເວລາ, ໜ້າຈໍ ແລະ User-Agent ຂອງທ່ານ, ໄດ້ລະຫັດລາຍນິ້ວມືລວມ ແລະ ການປະເມີນຄວາມເປັນເອກະລັກ (entropy) ອີງຕາມການຄົ້ນຄວ້າສາທາລະນະ. ເຮັດວຽກໃນເຄື່ອງ ບໍ່ອັບໂຫລດຂໍ້ມູນໃດໆ.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "ເຄື່ອງມືກວດລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບ",
+   "url": "https://iistostas.github.io/lo/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "lo",
+   "description": "ເຄື່ອງມືກວດລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບອອນລາຍຟຣີ. ອ່ານລາຍນິ້ວມື canvas, WebGL, ຟອນ, ເຂດເວລາ, ໜ້າຈໍ ແລະ User-Agent ຂອງທ່ານ, ໄດ້ລະຫັດລາຍນິ້ວມືລວມ ແລະ ການປະເມີນຄວາມເປັນເອກະລັກ (entropy) ອີງຕາມການຄົ້ນຄວ້າສາທາລະນະ. ເຮັດວຽກໃນເຄື່ອງ ບໍ່ອັບໂຫລດຂໍ້ມູນໃດໆ.",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "lo",
+   "url": "https://iistostas.github.io/lo/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "ລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບແມ່ນຫຍັງ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບແມ່ນຕົວລະບຸທີ່ສ້າງຈາກການລວມຄຸນສົມບັດທີ່ໂປຣແກຣມທ່ອງເວັບ ແລະ ອຸປະກອນຂອງທ່ານເປີດເຜີຍ (user agent, ໜ້າຈໍ, ເຂດເວລາ, ຟອນ, ການສະແດງ canvas/WebGL ແລະ ອື່ນໆ). ເຖິງບໍ່ມີ cookie ເວັບໄຊກໍຈື່ໂປຣແກຣມທ່ອງເວັບອັນດຽວກັນຂ້າມການເຂົ້າຊົມໄດ້."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ເຄື່ອງມືກວດນີ້ປອດໄພບໍ? ມັນອັບໂຫລດຂໍ້ມູນຂອງຂ້ອຍບໍ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ບໍ່. ການອ່ານ ແລະ ການຄຳນວນທັງໝົດເກີດໃນໂປຣແກຣມທ່ອງເວັບດ້ວຍ JavaScript ຜົນລັບສະແດງສະເພາະໜ້ານີ້ ບໍ່ສົ່ງໄປເຊີບເວີໃດໆ ແລະ ບໍ່ເກັບໄວ້."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ເປັນຫຍັງລາຍນິ້ວມືຂອງຂ້ອຍຈຶ່ງເປັນເອກະລັກ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ຄຸນສົມບັດດຽວ (ເຊັ່ນ ເຂດເວລາ) ມີຄົນຄືກັນຫຼາຍ ແຕ່ຄຸນສົມບັດຫຼາຍສິບອັນລວມກັນສ້າງພື້ນທີ່ຄ່າໃຫຍ່ຫຼວງ. ການຄົ້ນຄວ້າສາທາລະນະສະແດງວ່າໂປຣແກຣມທ່ອງເວັບສ່ວນໃຫຍ່ມີລາຍນິ້ວມືລວມເປັນເອກະລັກ ຈຶ່ງຖືກຕິດຕາມຂ້າມເວັບໄຊໂດຍບໍ່ຕ້ອງເຂົ້າສູ່ລະບົບ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ລາຍນິ້ວມື canvas ແມ່ນຫຍັງ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ໂປຣແກຣມທ່ອງເວັບແຕ້ມຂໍ້ຄວາມ ຫຼື ຮູບອັນດຽວກັນລົງໃນ canvas ທີ່ເຊື່ອງໄວ້ ແລ້ວອ່ານ pixel ກັບຄືນ. GPU, driver, ຟອນລະບົບ ແລະ anti-aliasing ທີ່ຕ່າງກັນສ້າງຄວາມແຕກຕ່າງເລັກແຕ່ໝັ້ນຄົງ ເຮັດໃຫ້ canvas ເປັນສັນຍານທີ່ລະບຸຕົວແຮງທີ່ສຸດອັນໜຶ່ງ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ໂໝດ incognito ເຊື່ອງລາຍນິ້ວມືໄດ້ບໍ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ສ່ວນຫຼາຍບໍ່ໄດ້. ໂໝດສ່ວນຕົວລຶບ cookie ແລະ ປະຫວັດໃນເຄື່ອງເປັນຫຼັກ ແຕ່ canvas, WebGL, ຟອນ, ເຂດເວລາ ຍັງເປີດເຜີຍຄືເກົ່າ ດັ່ງນັ້ນພຽງໂໝດສ່ວນຕົວບໍ່ສາມາດຫຼົບການຕິດຕາມລາຍນິ້ວມືໄດ້."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ຈະຫຼຸດການຖືກຕິດຕາມດ້ວຍລາຍນິ້ວມືແນວໃດ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ທ່ານສາມາດຫຼຸດການເປີດເຜີຍ (ໃຊ້ການຕັ້ງຄ່າທົ່ວໄປ ປິດບາງ API) ຫຼື ໃຊ້ໂປຣແກຣມທ່ອງເວັບປ້ອງກັນການກວດຫາສຳລັບຫຼາຍບັນຊີ — ມັນກຳນົດລາຍນິ້ວມືແຍກກັນ ຄວບຄຸມໄດ້ ແລະ ສອດຄ່ອງໃຫ້ແຕ່ລະ profile ເພື່ອບໍ່ໃຫ້ບັນຊີເຊື່ອມໂຍງກັນ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN ປ່ຽນລາຍນິ້ວມືຂອງຂ້ອຍໄດ້ບໍ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ບໍ່ໄດ້. VPN ປ່ຽນພຽງ IP ຂາອອກ ບໍ່ປ່ຽນ canvas, ຟອນ, ເຂດເວລາ ຫຼື user-agent ດັ່ງນັ້ນປ່ຽນ IP ແລ້ວລາຍນິ້ວມືກໍຍັງຄືເກົ່າ."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <strong>ພາສາລາວ</strong> · <a href="/my/">မြန်မာ</a></nav>
+<h1>ເຄື່ອງມືກວດລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບ</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_lo.webp"><img src="/img/cover_lo.png" alt="ຮູບເຄື່ອງມືກວດລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບ" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>ຮູບ: ເຄື່ອງມືກວດລາຍນິ້ວມື (canvas / WebGL / ຟອນ / ເຂດເວລາ / entropy)</figcaption></figure>
+<p>ກົດປຸ່ມເພື່ອອ່ານສັນຍານລາຍນິ້ວມືທີ່ໂປຣແກຣມທ່ອງເວັບຂອງທ່ານເປີດເຜີຍຢ່າງງຽບໆ — canvas, WebGL, ຟອນທີ່ຕິດຕັ້ງ, ເຂດເວລາ, ໜ້າຈໍ ແລະ User-Agent — ຈາກນັ້ນໄດ້ລະຫັດລາຍນິ້ວມືລວມ ແລະ ເບິ່ງວ່າແຕ່ລະສັນຍານລະບຸຕົວທ່ານໄດ້ງ່າຍປານໃດ. ທຸກຢ່າງຄຳນວນໃນເຄື່ອງຂອງທ່ານ <strong>ບໍ່ມີຂໍ້ມູນຖືກອັບໂຫລດ</strong>.</p>
+<div class="tool"><button id="run" type="button">ກວດລາຍນິ້ວມືຂອງຂ້ອຍ</button><div class="note">ເຄື່ອງມືນີ້ເຮັດວຽກທັງໝົດໃນໂປຣແກຣມທ່ອງເວັບຂອງທ່ານ. ບໍ່ອັບໂຫລດ ຫຼື ເກັບຂໍ້ມູນໃດໆ.</div><div id="fp"></div></div>
+<h2>ສັນຍານທີ່ປະກອບເປັນລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບ</h2>
+<p>ເວັບໄຊບໍ່ຕ້ອງການ cookie: ພຽງເກັບກຳຄຳຕອບທີ່ເບິ່ງຄືບໍ່ມີໄພຂອງໂປຣແກຣມທ່ອງເວັບ ກໍສ້າງຕົວລະບຸທີ່ຄ່ອນຂ້າງໝັ້ນຄົງໄດ້. ສັນຍານທົ່ວໄປລວມມີຄວາມແຕກຕ່າງເລັກນ້ອຍຂອງ GPU ແລະ driver ເມື່ອສະແດງ <code>canvas</code>/<code>WebGL</code>, ບັນຊີຟອນທີ່ຕິດຕັ້ງ, ເຂດເວລາ, ຄວາມລະອຽດໜ້າຈໍ ແລະ ຄວາມເລິກສີ, ພາສາ, ຈຳນວນແກນ CPU, ໜ່ວຍຄວາມຈຳອຸປະກອນ ແລະ ການຮອງຮັບການແຕະ. ແຕ່ລະຄ່າບໍ່ເປັນເອກະລັກ ແຕ່<strong>ເມື່ອລວມກັນ</strong>ມັກກາຍເປັນເອກະລັກ.</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ຮູບ 1: ວິທີທີ່ເວັບໄຊປະກອບລາຍນິ້ວມືຈາກສັນຍານທີ່ໂປຣແກຣມທ່ອງເວັບຕອບ ໂດຍບໍ່ໃຊ້ cookie"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>ຮູບ 1: ວິທີທີ່ເວັບໄຊປະກອບລາຍນິ້ວມືຈາກສັນຍານທີ່ໂປຣແກຣມທ່ອງເວັບຕອບ ໂດຍບໍ່ໃຊ້ cookie</figcaption></figure>
+<h2>ແຕ່ລະສັນຍານລະບຸຕົວໄດ້ແຮງປານໃດ (entropy)</h2>
+<p>Entropy ວັດແທກວ່າສັນຍານໜຶ່ງໃຫ້ຂໍ້ມູນລະບຸຕົວຫຼາຍປານໃດ (ໜ່ວຍ bit — ຍິ່ງສູງຍິ່ງແຍກຄົນໄດ້ດີ). Panopticlick ຂອງ EFF ວັດໄດ້ສະເລ່ຍປະມານ <strong>18.1 bit</strong> ໂດຍລາຍນິ້ວມືປະມານ 83.6% ເປັນເອກະລັກ; AmIUnique (Laperdrix et al., 2016) ພົບປະມານ 89.4% ເປັນເອກະລັກໃນ 118,000 ຕົວຢ່າງ. ຕາຕະລາງລຸ່ມນີ້ໃຫ້<strong>ການປະເມີນຄ່າຄ່າວໆຕໍ່ສັນຍານ</strong>ທີ່ສັງລວມຈາກການຄົ້ນຄວ້າສາທາລະນະນັ້ນ.</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_lo.webp"><img src="/img/board_lo.png" alt="ກຳລັງລະບຸຕົວປຽບທຽບຂອງສັນຍານລາຍນິ້ວມື" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>ຮູບ: ແຕ່ລະຄ່າບໍ່ເປັນເອກະລັກ ແຕ່ລວມກັນມັກເປັນເອກະລັກ — ນີ້ຄືຫຼັກການຕິດຕາມລາຍນິ້ວມື</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ຮູບ 2: ກຳລັງລະບຸຕົວປຽບທຽບ (entropy) ຂອງແຕ່ລະສັນຍານ — ເມື່ອລວມກັນມັກພຽງພໍທີ່ຈະຊີ້ຕົວທ່ານ"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>ຮູບ 2: ກຳລັງລະບຸຕົວປຽບທຽບ (entropy) ຂອງແຕ່ລະສັນຍານ — ເມື່ອລວມກັນມັກພຽງພໍທີ່ຈະຊີ້ຕົວທ່ານ</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>Entropy ລາຍນິ້ວມືຕາມສັນຍານ (ການປະເມີນ 2026)</h2>
+<p>ຕໍ່ໄປນີ້ແມ່ນ<strong>ການປະເມີນປີ 2026</strong> ທີ່ສັງລວມຈາກການຄົ້ນຄວ້າລາຍນິ້ວມືສາທາລະນະ (EFF Panopticlick 2010, AmIUnique 2016) ສະແດງປະລິມານຂໍ້ມູນລະບຸຕົວໂດຍປະມານຕໍ່ສັນຍານ: <em>ການປະເມີນ ບໍ່ແມ່ນການວັດໂດຍກົງ ສຳລັບອ້າງອີງເທົ່ານັ້ນ.</em></p>
+<table><tr><th>ສັນຍານ</th><th>Entropy ປະເມີນ (bit)</th><th>ພື້ນຖານ</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Hash canvas</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>ຕົວສະແດງ WebGL</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>ຟອນທີ່ກວດພົບ</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>ໜ້າຈໍ ແລະ ຄວາມເລິກສີ</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>ເຂດເວລາ</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>ພາສາ</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>ຄຳຖາມທີ່ພົບເລື້ອຍ</h2>
+<details class="faq"><summary><strong>ລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບແມ່ນຫຍັງ?</strong></summary>
+<p>ລາຍນິ້ວມືໂປຣແກຣມທ່ອງເວັບແມ່ນຕົວລະບຸທີ່ສ້າງຈາກການລວມຄຸນສົມບັດທີ່ໂປຣແກຣມທ່ອງເວັບ ແລະ ອຸປະກອນຂອງທ່ານເປີດເຜີຍ (user agent, ໜ້າຈໍ, ເຂດເວລາ, ຟອນ, ການສະແດງ canvas/WebGL ແລະ ອື່ນໆ). ເຖິງບໍ່ມີ cookie ເວັບໄຊກໍຈື່ໂປຣແກຣມທ່ອງເວັບອັນດຽວກັນຂ້າມການເຂົ້າຊົມໄດ້.</p></details>
+<details class="faq"><summary><strong>ເຄື່ອງມືກວດນີ້ປອດໄພບໍ? ມັນອັບໂຫລດຂໍ້ມູນຂອງຂ້ອຍບໍ?</strong></summary>
+<p>ບໍ່. ການອ່ານ ແລະ ການຄຳນວນທັງໝົດເກີດໃນໂປຣແກຣມທ່ອງເວັບດ້ວຍ JavaScript ຜົນລັບສະແດງສະເພາະໜ້ານີ້ ບໍ່ສົ່ງໄປເຊີບເວີໃດໆ ແລະ ບໍ່ເກັບໄວ້.</p></details>
+<details class="faq"><summary><strong>ເປັນຫຍັງລາຍນິ້ວມືຂອງຂ້ອຍຈຶ່ງເປັນເອກະລັກ?</strong></summary>
+<p>ຄຸນສົມບັດດຽວ (ເຊັ່ນ ເຂດເວລາ) ມີຄົນຄືກັນຫຼາຍ ແຕ່ຄຸນສົມບັດຫຼາຍສິບອັນລວມກັນສ້າງພື້ນທີ່ຄ່າໃຫຍ່ຫຼວງ. ການຄົ້ນຄວ້າສາທາລະນະສະແດງວ່າໂປຣແກຣມທ່ອງເວັບສ່ວນໃຫຍ່ມີລາຍນິ້ວມືລວມເປັນເອກະລັກ ຈຶ່ງຖືກຕິດຕາມຂ້າມເວັບໄຊໂດຍບໍ່ຕ້ອງເຂົ້າສູ່ລະບົບ.</p></details>
+<details class="faq"><summary><strong>ລາຍນິ້ວມື canvas ແມ່ນຫຍັງ?</strong></summary>
+<p>ໂປຣແກຣມທ່ອງເວັບແຕ້ມຂໍ້ຄວາມ ຫຼື ຮູບອັນດຽວກັນລົງໃນ canvas ທີ່ເຊື່ອງໄວ້ ແລ້ວອ່ານ pixel ກັບຄືນ. GPU, driver, ຟອນລະບົບ ແລະ anti-aliasing ທີ່ຕ່າງກັນສ້າງຄວາມແຕກຕ່າງເລັກແຕ່ໝັ້ນຄົງ ເຮັດໃຫ້ canvas ເປັນສັນຍານທີ່ລະບຸຕົວແຮງທີ່ສຸດອັນໜຶ່ງ.</p></details>
+<details class="faq"><summary><strong>ໂໝດ incognito ເຊື່ອງລາຍນິ້ວມືໄດ້ບໍ?</strong></summary>
+<p>ສ່ວນຫຼາຍບໍ່ໄດ້. ໂໝດສ່ວນຕົວລຶບ cookie ແລະ ປະຫວັດໃນເຄື່ອງເປັນຫຼັກ ແຕ່ canvas, WebGL, ຟອນ, ເຂດເວລາ ຍັງເປີດເຜີຍຄືເກົ່າ ດັ່ງນັ້ນພຽງໂໝດສ່ວນຕົວບໍ່ສາມາດຫຼົບການຕິດຕາມລາຍນິ້ວມືໄດ້.</p></details>
+<details class="faq"><summary><strong>ຈະຫຼຸດການຖືກຕິດຕາມດ້ວຍລາຍນິ້ວມືແນວໃດ?</strong></summary>
+<p>ທ່ານສາມາດຫຼຸດການເປີດເຜີຍ (ໃຊ້ການຕັ້ງຄ່າທົ່ວໄປ ປິດບາງ API) ຫຼື ໃຊ້ໂປຣແກຣມທ່ອງເວັບປ້ອງກັນການກວດຫາສຳລັບຫຼາຍບັນຊີ — ມັນກຳນົດລາຍນິ້ວມືແຍກກັນ ຄວບຄຸມໄດ້ ແລະ ສອດຄ່ອງໃຫ້ແຕ່ລະ profile ເພື່ອບໍ່ໃຫ້ບັນຊີເຊື່ອມໂຍງກັນ.</p></details>
+<details class="faq"><summary><strong>VPN ປ່ຽນລາຍນິ້ວມືຂອງຂ້ອຍໄດ້ບໍ?</strong></summary>
+<p>ບໍ່ໄດ້. VPN ປ່ຽນພຽງ IP ຂາອອກ ບໍ່ປ່ຽນ canvas, ຟອນ, ເຂດເວລາ ຫຼື user-agent ດັ່ງນັ້ນປ່ຽນ IP ແລ້ວລາຍນິ້ວມືກໍຍັງຄືເກົ່າ.</p></details>
+<div class="sources"><h2>ເອກະສານອ້າງອີງ (ການຄົ້ນຄວ້າສາທາລະນະ)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>ກ່ຽວຂ້ອງ</h2>
+<p><a href="https://bitantidetect.com/download/">ດາວໂຫລດ BitBrowser (ໂປຣແກຣມທ່ອງເວັບລາຍນິ້ວມື/ປ້ອງກັນການເຊື່ອມໂຍງ)</a></p></div>
+</main>
+<footer>ຫຼັກການລາຍນິ້ວມື ແລະ ຕົວເລກ entropy ໃນໜ້ານີ້ສັງລວມຈາກການຄົ້ນຄວ້າສາທາລະນະລຸ່ມນີ້ ເຄື່ອງມືອ່ານຄຸນສົມບັດແທ້ຂອງໂປຣແກຣມທ່ອງເວັບຂອງທ່ານເອງ. ຜູ້ຂຽນ: Lin Yue (林越).<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "ລະຫັດລາຍນິ້ວມືລວມຂອງທ່ານ", "uniq": "ຄວາມເປັນເອກະລັກ", "uniqval": "ການລວມຄ່ານີ້ໜ້າຈະລະບຸຕົວໄດ້ — ຄ່າຂອງທ່ານຍິ່ງຜິດປົກກະຕິ ທ່ານຍິ່ງຖືກແຍກອອກຈາກຝູງຄົນໄດ້ງ່າຍ.", "run": "ກວດລາຍນິ້ວມືຂອງຂ້ອຍ", "note": "ເຄື່ອງມືນີ້ເຮັດວຽກທັງໝົດໃນໂປຣແກຣມທ່ອງເວັບຂອງທ່ານ. ບໍ່ອັບໂຫລດ ຫຼື ເກັບຂໍ້ມູນໃດໆ.", "dim": {"ua": "User-Agent", "platform": "ແພລດຟອມ / ລະບົບ", "langs": "ພາສາ", "screen": "ໜ້າຈໍ ແລະ ຄວາມເລິກສີ", "tz": "ເຂດເວລາ", "cpu": "ແກນ CPU", "mem": "ໜ່ວຍຄວາມຈຳອຸປະກອນ", "touch": "ຈຸດແຕະ", "canvas": "Hash canvas", "webglv": "ຜູ້ຜະລິດ WebGL", "webglr": "ຕົວສະແດງ WebGL", "fonts": "ຟອນທີ່ກວດພົບ", "audio": "ອັດຕາສຸ່ມສຽງ", "cookie": "Cookie ໃຊ້ໄດ້", "dnt": "Do Not Track", "fpid": "ລະຫັດລາຍນິ້ວມືລວມ"}, "yes": "ແມ່ນ", "no": "ບໍ່", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

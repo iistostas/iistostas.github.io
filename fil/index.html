@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="fil"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Browser Fingerprint Checker - pagsusuri ng canvas, WebGL, font, time zone at entropy</title>
+<meta name="description" content="Libreng online na browser fingerprint checker. Basahin ang iyong canvas, WebGL, font, time zone, screen at User-Agent fingerprint, makakuha ng pinagsamang fingerprint ID at tantiya ng pagkaka-natatangi (entropy) batay sa pampublikong pananaliksik. Tumatakbo nang lokal, walang data na ina-upload.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "Browser Fingerprint Checker",
+   "url": "https://iistostas.github.io/fil/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "fil",
+   "description": "Libreng online na browser fingerprint checker. Basahin ang iyong canvas, WebGL, font, time zone, screen at User-Agent fingerprint, makakuha ng pinagsamang fingerprint ID at tantiya ng pagkaka-natatangi (entropy) batay sa pampublikong pananaliksik. Tumatakbo nang lokal, walang data na ina-upload.",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "fil",
+   "url": "https://iistostas.github.io/fil/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Ano ang browser fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ang browser fingerprint ay isang pantukoy na binuo sa pamamagitan ng pagsasama ng mga katangiang inilalantad ng iyong browser at device (user agent, screen, time zone, font, canvas/WebGL rendering at iba pa). Kahit walang cookie, makikilala ng site ang parehong browser sa iba't ibang pagbisita."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Ligtas ba ang checker na ito? Ina-upload ba nito ang aking data?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Hindi. Lahat ng pagbabasa at pagkalkula ay nangyayari nang lokal sa browser gamit ang JavaScript; ipinapakita ang resulta sa pahinang ito lamang at hindi kailanman ipinapadala sa anumang server o iniimbak."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Bakit natatangi ang aking fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ang iisang katangian (tulad ng time zone) ay magkapareho sa maraming tao, ngunit ang dose-dosenang katangiang pinagsama ay lumilikha ng napakalaking espasyo ng halaga. Ipinapakita ng pampublikong pananaliksik na karamihan sa browser ay may natatanging pinagsamang fingerprint, kaya matutunton sa iba't ibang site nang hindi nag-lo-log in."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Ano ang canvas fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Gumuguhit ang browser ng parehong teksto o hugis sa nakatagong canvas at babasahin muli ang mga pixel. Ang magkakaibang GPU, driver, system font at anti-aliasing ay lumilikha ng maliit ngunit matatag na pagkakaiba, kaya isa ang canvas sa pinakanakakatukoy na signal."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Itinatago ba ng incognito o private mode ang fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Kadalasan ay hindi. Nililinis ng private mode ang cookie at lokal na kasaysayan, ngunit nananatiling nakalantad ang canvas, WebGL, font, time zone at mga katulad na signal, kaya hindi sapat ang private mode lamang para makaiwas sa fingerprint tracking."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Paano babawasan ang fingerprint tracking?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Maaari mong paliitin ang pagkalantad (gumamit ng karaniwang setting, i-disable ang ilang API) o gumamit ng anti-detect browser para sa maraming account - nagtatalaga ito sa bawat profile ng hiwalay, makokontrol at magkatugmang fingerprint para hindi maiugnay ang mga account."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Mababago ba ng VPN ang aking fingerprint?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Hindi. Pinapalitan lang ng VPN ang exit IP; hindi nito binabago ang canvas, font, time zone o user-agent, kaya pareho pa rin ang fingerprint pagkatapos palitan ang IP."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <strong>Filipino</strong> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>Browser Fingerprint Checker</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_fil.webp"><img src="/img/cover_fil.png" alt="Ilustrasyon ng browser fingerprint checker tool" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Larawan: Browser fingerprint checker (canvas / WebGL / font / time zone / entropy)</figcaption></figure>
+<p>Pindutin ang button para basahin ang mga signal ng fingerprint na tahimik na inilalantad ng iyong browser - canvas, WebGL, naka-install na font, time zone, screen at User-Agent - pagkatapos ay makakuha ng pinagsamang fingerprint ID at tingnan kung gaano kadaling matukoy ka ng bawat signal. Lahat ay kinakalkula nang lokal sa iyong browser; <strong>walang data na ina-upload</strong>.</p>
+<div class="tool"><button id="run" type="button">Suriin ang aking fingerprint</button><div class="note">Tumatakbo ang tool na ito nang buo sa iyong browser. Walang data na ina-upload o iniimbak.</div><div id="fp"></div></div>
+<h2>Mga signal na bumubuo ng browser fingerprint</h2>
+<p>Hindi kailangan ng cookie ng isang site: mula sa ilang tila walang-saysay na tanong na sinasagot ng browser, makakabuo ito ng medyo matatag na pantukoy. Kabilang sa karaniwang signal ang banayad na pagkakaiba ng GPU at driver kapag nagre-render ng <code>canvas</code>/<code>WebGL</code>, listahan ng naka-install na font, time zone, resolution ng screen at lalim ng kulay, wika, bilang ng CPU core, memory ng device at suporta sa touch. Walang iisang halaga na natatangi, ngunit <strong>kapag pinagsama</strong> ay kadalasang nagiging natatangi.</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Larawan 1: kung paano binubuo ng site ang fingerprint mula sa mga signal na sinasagot ng browser, nang walang cookie"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>Larawan 1: kung paano binubuo ng site ang fingerprint mula sa mga signal na sinasagot ng browser, nang walang cookie</figcaption></figure>
+<h2>Gaano nakakatukoy ang bawat signal (entropy)</h2>
+<p>Sinusukat ng entropy kung gaano karaming impormasyong nakakatukoy ang dala ng isang signal (sa bit - mas mataas, mas naihihiwalay ang mga tao). Sinukat ng Panopticlick ng EFF ang average na humigit-kumulang <strong>18.1 bits</strong>, na may humigit-kumulang 83.6% na natatanging fingerprint; natuklasan ng AmIUnique (Laperdrix et al., 2016) na humigit-kumulang 89.4% ang natatangi sa 118,000 sample. Nagbibigay ang talahanayan sa ibaba ng <strong>magaspang na tantiya kada signal</strong> na hinango sa pampublikong pananaliksik na iyon.</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_fil.webp"><img src="/img/board_fil.png" alt="Relatibong lakas ng pagtukoy ng mga fingerprint signal" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Larawan: walang iisang halagang natatangi, ngunit kapag pinagsama ay kadalasang natatangi - ganito gumagana ang fingerprint tracking</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Larawan 2: relatibong lakas ng pagtukoy (entropy) ng bawat signal - kapag pinagsama ay kadalasang sapat na para matukoy ka"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>Larawan 2: relatibong lakas ng pagtukoy (entropy) ng bawat signal - kapag pinagsama ay kadalasang sapat na para matukoy ka</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>Entropy ng fingerprint kada signal (tantiya 2026)</h2>
+<p>Ang mga sumusunod ay <strong>tantiya para sa 2026</strong> na hinango sa pampublikong pananaliksik sa fingerprint (EFF Panopticlick 2010, AmIUnique 2016), na nagpapakita ng tinatayang impormasyong nakakatukoy kada signal; <em>tantiya, hindi direktang sukat, para sa sanggunian lamang.</em></p>
+<table><tr><th>Signal</th><th>Tantiyang entropy (bits)</th><th>Batayan</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Canvas hash</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>WebGL renderer</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>Natukoy na font</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>Screen at lalim ng kulay</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>Time zone</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>Mga wika</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>Mga madalas itanong</h2>
+<details class="faq"><summary><strong>Ano ang browser fingerprint?</strong></summary>
+<p>Ang browser fingerprint ay isang pantukoy na binuo sa pamamagitan ng pagsasama ng mga katangiang inilalantad ng iyong browser at device (user agent, screen, time zone, font, canvas/WebGL rendering at iba pa). Kahit walang cookie, makikilala ng site ang parehong browser sa iba't ibang pagbisita.</p></details>
+<details class="faq"><summary><strong>Ligtas ba ang checker na ito? Ina-upload ba nito ang aking data?</strong></summary>
+<p>Hindi. Lahat ng pagbabasa at pagkalkula ay nangyayari nang lokal sa browser gamit ang JavaScript; ipinapakita ang resulta sa pahinang ito lamang at hindi kailanman ipinapadala sa anumang server o iniimbak.</p></details>
+<details class="faq"><summary><strong>Bakit natatangi ang aking fingerprint?</strong></summary>
+<p>Ang iisang katangian (tulad ng time zone) ay magkapareho sa maraming tao, ngunit ang dose-dosenang katangiang pinagsama ay lumilikha ng napakalaking espasyo ng halaga. Ipinapakita ng pampublikong pananaliksik na karamihan sa browser ay may natatanging pinagsamang fingerprint, kaya matutunton sa iba't ibang site nang hindi nag-lo-log in.</p></details>
+<details class="faq"><summary><strong>Ano ang canvas fingerprint?</strong></summary>
+<p>Gumuguhit ang browser ng parehong teksto o hugis sa nakatagong canvas at babasahin muli ang mga pixel. Ang magkakaibang GPU, driver, system font at anti-aliasing ay lumilikha ng maliit ngunit matatag na pagkakaiba, kaya isa ang canvas sa pinakanakakatukoy na signal.</p></details>
+<details class="faq"><summary><strong>Itinatago ba ng incognito o private mode ang fingerprint?</strong></summary>
+<p>Kadalasan ay hindi. Nililinis ng private mode ang cookie at lokal na kasaysayan, ngunit nananatiling nakalantad ang canvas, WebGL, font, time zone at mga katulad na signal, kaya hindi sapat ang private mode lamang para makaiwas sa fingerprint tracking.</p></details>
+<details class="faq"><summary><strong>Paano babawasan ang fingerprint tracking?</strong></summary>
+<p>Maaari mong paliitin ang pagkalantad (gumamit ng karaniwang setting, i-disable ang ilang API) o gumamit ng anti-detect browser para sa maraming account - nagtatalaga ito sa bawat profile ng hiwalay, makokontrol at magkatugmang fingerprint para hindi maiugnay ang mga account.</p></details>
+<details class="faq"><summary><strong>Mababago ba ng VPN ang aking fingerprint?</strong></summary>
+<p>Hindi. Pinapalitan lang ng VPN ang exit IP; hindi nito binabago ang canvas, font, time zone o user-agent, kaya pareho pa rin ang fingerprint pagkatapos palitan ang IP.</p></details>
+<div class="sources"><h2>Mga sanggunian (pampublikong pananaliksik)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>Kaugnay</h2>
+<p><a href="https://bitantidetect.com/download/">I-download ang BitBrowser (fingerprint/anti-detect browser)</a></p></div>
+</main>
+<footer>Ang mga konsepto ng fingerprint at bilang ng entropy sa pahinang ito ay hinango sa pampublikong pananaliksik sa ibaba; binabasa ng tool ang totoong katangian ng sarili mong browser. May-akda: Lin Yue.<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "Ang iyong pinagsamang fingerprint ID", "uniq": "Pagkaka-natatangi", "uniqval": "Malamang na nakakapagtukoy ang kumbinasyong ito ng mga halaga - habang mas hindi pangkaraniwan ang iyong mga halaga, mas madali kang ibukod sa karamihan.", "run": "Suriin ang aking fingerprint", "note": "Tumatakbo ang tool na ito nang buo sa iyong browser. Walang data na ina-upload o iniimbak.", "dim": {"ua": "User-Agent", "platform": "Platform / OS", "langs": "Mga wika", "screen": "Screen at lalim ng kulay", "tz": "Time zone", "cpu": "CPU cores", "mem": "Memory ng device", "touch": "Touch points", "canvas": "Canvas hash", "webglv": "WebGL vendor", "webglr": "WebGL renderer", "fonts": "Natukoy na font", "audio": "Audio sample rate", "cookie": "Naka-enable ang cookie", "dnt": "Do Not Track", "fpid": "Pinagsamang fingerprint ID"}, "yes": "oo", "no": "hindi", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Công cụ kiểm tra dấu vân tay trình duyệt - canvas, WebGL, phông chữ, múi giờ và entropy</title>
+<meta name="description" content="Công cụ kiểm tra dấu vân tay trình duyệt trực tuyến miễn phí. Đọc dấu vân tay canvas, WebGL, phông chữ, múi giờ, màn hình và User-Agent của bạn, nhận ID dấu vân tay tổng hợp và ước tính tính duy nhất (entropy) dựa trên nghiên cứu công khai. Chạy cục bộ, không tải dữ liệu lên.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "Công cụ kiểm tra dấu vân tay trình duyệt",
+   "url": "https://iistostas.github.io/vi/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "vi",
+   "description": "Công cụ kiểm tra dấu vân tay trình duyệt trực tuyến miễn phí. Đọc dấu vân tay canvas, WebGL, phông chữ, múi giờ, màn hình và User-Agent của bạn, nhận ID dấu vân tay tổng hợp và ước tính tính duy nhất (entropy) dựa trên nghiên cứu công khai. Chạy cục bộ, không tải dữ liệu lên.",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "vi",
+   "url": "https://iistostas.github.io/vi/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Dấu vân tay trình duyệt là gì?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Dấu vân tay trình duyệt là một định danh tạo từ việc kết hợp các thuộc tính mà trình duyệt và thiết bị của bạn để lộ (user agent, màn hình, múi giờ, phông chữ, kết xuất canvas/WebGL...). Ngay cả khi không có cookie, trang web vẫn nhận ra cùng một trình duyệt qua các lần truy cập."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Công cụ này có an toàn không? Có tải dữ liệu của tôi lên không?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Không. Mọi việc đọc và tính toán đều diễn ra cục bộ trong trình duyệt bằng JavaScript; kết quả chỉ hiển thị trên trang này, không gửi tới bất kỳ máy chủ nào và không lưu trữ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Vì sao dấu vân tay của tôi là duy nhất?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Một thuộc tính đơn lẻ (như múi giờ) có nhiều người giống nhau, nhưng hàng chục thuộc tính kết hợp tạo ra không gian giá trị rất lớn. Nghiên cứu công khai cho thấy phần lớn trình duyệt có dấu vân tay tổng hợp duy nhất, nên có thể bị theo dõi xuyên trang mà không cần đăng nhập."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Dấu vân tay canvas là gì?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Trình duyệt vẽ cùng một đoạn văn bản hoặc hình vào canvas ẩn rồi đọc lại các điểm ảnh. GPU, driver, phông hệ thống và khử răng cưa khác nhau tạo ra khác biệt nhỏ nhưng ổn định, khiến canvas là một trong những tín hiệu nhận dạng mạnh nhất."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Chế độ ẩn danh có giấu được dấu vân tay không?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Phần lớn là không. Chế độ riêng tư chủ yếu xóa cookie và lịch sử cục bộ, nhưng canvas, WebGL, phông chữ, múi giờ và các tín hiệu tương tự vẫn để lộ, nên riêng chế độ ẩn danh không thoát khỏi theo dõi bằng dấu vân tay."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Làm sao giảm bị theo dõi bằng dấu vân tay?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Bạn có thể thu hẹp mức để lộ (dùng cài đặt phổ biến, tắt một số API) hoặc dùng trình duyệt chống phát hiện cho nhiều tài khoản - nó gán cho mỗi hồ sơ một dấu vân tay riêng, kiểm soát được và nhất quán để các tài khoản không liên kết với nhau."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN có thay đổi dấu vân tay của tôi không?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Không. VPN chỉ đổi IP đầu ra; nó không đổi canvas, phông chữ, múi giờ hay user-agent, nên sau khi đổi IP dấu vân tay vẫn như cũ."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <strong>Tiếng Việt</strong> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>Công cụ kiểm tra dấu vân tay trình duyệt</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_vi.webp"><img src="/img/cover_vi.png" alt="Minh họa công cụ kiểm tra dấu vân tay trình duyệt" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Hình: Kiểm tra dấu vân tay trình duyệt (canvas / WebGL / phông chữ / múi giờ / entropy)</figcaption></figure>
+<p>Nhấn nút để đọc các tín hiệu dấu vân tay mà trình duyệt âm thầm để lộ - canvas, WebGL, phông chữ đã cài, múi giờ, màn hình và User-Agent - rồi nhận ID dấu vân tay tổng hợp và xem mỗi tín hiệu nhận ra bạn dễ đến mức nào. Mọi thứ được tính cục bộ trong trình duyệt; <strong>không có dữ liệu nào được tải lên</strong>.</p>
+<div class="tool"><button id="run" type="button">Kiểm tra dấu vân tay của tôi</button><div class="note">Công cụ chạy hoàn toàn trong trình duyệt của bạn. Không tải lên hay lưu trữ dữ liệu nào.</div><div id="fp"></div></div>
+<h2>Dấu vân tay trình duyệt gồm những tín hiệu nào</h2>
+<p>Trang web không cần cookie: chỉ từ một loạt câu trả lời tưởng như vô hại của trình duyệt, nó có thể ghép thành một định danh khá ổn định. Các tín hiệu phổ biến gồm khác biệt nhỏ của GPU và driver khi kết xuất <code>canvas</code>/<code>WebGL</code>, danh sách phông chữ đã cài, múi giờ, độ phân giải màn hình và độ sâu màu, ngôn ngữ, số lõi CPU, bộ nhớ thiết bị và hỗ trợ cảm ứng. Mỗi giá trị không duy nhất, nhưng <strong>khi kết hợp</strong> thường trở nên duy nhất.</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hình 1: cách một trang web ghép dấu vân tay từ các tín hiệu trình duyệt trả lời, mà không dùng cookie"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>Hình 1: cách một trang web ghép dấu vân tay từ các tín hiệu trình duyệt trả lời, mà không dùng cookie</figcaption></figure>
+<h2>Mỗi tín hiệu nhận dạng mạnh ra sao (entropy)</h2>
+<p>Entropy đo lượng thông tin nhận dạng một tín hiệu mang theo (tính bằng bit - càng cao càng phân biệt người tốt hơn). Panopticlick của EFF đo trung bình khoảng <strong>18,1 bit</strong>, với khoảng 83,6% dấu vân tay là duy nhất; AmIUnique (Laperdrix và cộng sự, 2016) thấy khoảng 89,4% duy nhất trên 118.000 mẫu. Bảng dưới đưa ra <strong>ước tính sơ bộ theo từng tín hiệu</strong> tổng hợp từ nghiên cứu công khai đó.</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_vi.webp"><img src="/img/board_vi.png" alt="Sức nhận dạng tương đối của các tín hiệu dấu vân tay" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Hình: mỗi giá trị không duy nhất, nhưng kết hợp lại thường duy nhất - đó là cách theo dõi bằng dấu vân tay</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hình 2: sức nhận dạng tương đối (entropy) của từng tín hiệu - khi kết hợp thường đủ để xác định bạn"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>Hình 2: sức nhận dạng tương đối (entropy) của từng tín hiệu - khi kết hợp thường đủ để xác định bạn</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>Entropy dấu vân tay theo tín hiệu (ước tính 2026)</h2>
+<p>Sau đây là <strong>ước tính 2026</strong> tổng hợp từ nghiên cứu dấu vân tay công khai (EFF Panopticlick 2010, AmIUnique 2016), cho biết lượng thông tin nhận dạng xấp xỉ theo từng tín hiệu; <em>ước tính, không phải đo trực tiếp, chỉ để tham khảo.</em></p>
+<table><tr><th>Tín hiệu</th><th>Entropy ước tính (bit)</th><th>Cơ sở</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Hash canvas</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>Bộ kết xuất WebGL</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>Số phông phát hiện</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>Màn hình và độ sâu màu</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>Múi giờ</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>Ngôn ngữ</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>Câu hỏi thường gặp</h2>
+<details class="faq"><summary><strong>Dấu vân tay trình duyệt là gì?</strong></summary>
+<p>Dấu vân tay trình duyệt là một định danh tạo từ việc kết hợp các thuộc tính mà trình duyệt và thiết bị của bạn để lộ (user agent, màn hình, múi giờ, phông chữ, kết xuất canvas/WebGL...). Ngay cả khi không có cookie, trang web vẫn nhận ra cùng một trình duyệt qua các lần truy cập.</p></details>
+<details class="faq"><summary><strong>Công cụ này có an toàn không? Có tải dữ liệu của tôi lên không?</strong></summary>
+<p>Không. Mọi việc đọc và tính toán đều diễn ra cục bộ trong trình duyệt bằng JavaScript; kết quả chỉ hiển thị trên trang này, không gửi tới bất kỳ máy chủ nào và không lưu trữ.</p></details>
+<details class="faq"><summary><strong>Vì sao dấu vân tay của tôi là duy nhất?</strong></summary>
+<p>Một thuộc tính đơn lẻ (như múi giờ) có nhiều người giống nhau, nhưng hàng chục thuộc tính kết hợp tạo ra không gian giá trị rất lớn. Nghiên cứu công khai cho thấy phần lớn trình duyệt có dấu vân tay tổng hợp duy nhất, nên có thể bị theo dõi xuyên trang mà không cần đăng nhập.</p></details>
+<details class="faq"><summary><strong>Dấu vân tay canvas là gì?</strong></summary>
+<p>Trình duyệt vẽ cùng một đoạn văn bản hoặc hình vào canvas ẩn rồi đọc lại các điểm ảnh. GPU, driver, phông hệ thống và khử răng cưa khác nhau tạo ra khác biệt nhỏ nhưng ổn định, khiến canvas là một trong những tín hiệu nhận dạng mạnh nhất.</p></details>
+<details class="faq"><summary><strong>Chế độ ẩn danh có giấu được dấu vân tay không?</strong></summary>
+<p>Phần lớn là không. Chế độ riêng tư chủ yếu xóa cookie và lịch sử cục bộ, nhưng canvas, WebGL, phông chữ, múi giờ và các tín hiệu tương tự vẫn để lộ, nên riêng chế độ ẩn danh không thoát khỏi theo dõi bằng dấu vân tay.</p></details>
+<details class="faq"><summary><strong>Làm sao giảm bị theo dõi bằng dấu vân tay?</strong></summary>
+<p>Bạn có thể thu hẹp mức để lộ (dùng cài đặt phổ biến, tắt một số API) hoặc dùng trình duyệt chống phát hiện cho nhiều tài khoản - nó gán cho mỗi hồ sơ một dấu vân tay riêng, kiểm soát được và nhất quán để các tài khoản không liên kết với nhau.</p></details>
+<details class="faq"><summary><strong>VPN có thay đổi dấu vân tay của tôi không?</strong></summary>
+<p>Không. VPN chỉ đổi IP đầu ra; nó không đổi canvas, phông chữ, múi giờ hay user-agent, nên sau khi đổi IP dấu vân tay vẫn như cũ.</p></details>
+<div class="sources"><h2>Tài liệu tham khảo (nghiên cứu công khai)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>Liên quan</h2>
+<p><a href="https://bitantidetect.com/download/">Tải BitBrowser (trình duyệt dấu vân tay/chống liên kết)</a></p></div>
+</main>
+<footer>Nguyên lý dấu vân tay và số liệu entropy trên trang này được tổng hợp từ nghiên cứu công khai bên dưới; công cụ đọc thuộc tính thật của chính trình duyệt bạn. Tác giả: Lâm Việt (林越).<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "ID dấu vân tay tổng hợp của bạn", "uniq": "Tính duy nhất", "uniqval": "Tổ hợp giá trị này nhiều khả năng nhận dạng được - giá trị càng bất thường, bạn càng dễ bị tách ra khỏi đám đông.", "run": "Kiểm tra dấu vân tay của tôi", "note": "Công cụ chạy hoàn toàn trong trình duyệt của bạn. Không tải lên hay lưu trữ dữ liệu nào.", "dim": {"ua": "User-Agent", "platform": "Nền tảng / Hệ điều hành", "langs": "Ngôn ngữ", "screen": "Màn hình và độ sâu màu", "tz": "Múi giờ", "cpu": "Số lõi CPU", "mem": "Bộ nhớ thiết bị", "touch": "Điểm cảm ứng", "canvas": "Hash canvas", "webglv": "Nhà cung cấp WebGL", "webglr": "Bộ kết xuất WebGL", "fonts": "Số phông phát hiện", "audio": "Tần số lấy mẫu âm thanh", "cookie": "Cookie bật", "dnt": "Do Not Track", "fpid": "ID dấu vân tay tổng hợp"}, "yes": "có", "no": "không", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

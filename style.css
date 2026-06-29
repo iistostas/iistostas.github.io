@@ -1,0 +1,27 @@
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Arial,"Noto Sans",sans-serif;line-height:1.75;color:#16181d;background:#f4f6fb;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding:26px 18px}
+main{background:#fff;border-radius:16px;padding:24px 28px;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+h1{margin-top:6px;font-size:27px;line-height:1.3}
+h2{font-size:20px;margin-top:32px;border-top:1px solid #eef0f5;padding-top:18px}
+p{margin:12px 0}code{background:#eef2ff;color:#3056d3;padding:1px 6px;border-radius:6px;font-size:.92em}
+.lang{font-size:13px;color:#8a90a2;margin-bottom:8px;line-height:2}.lang a{color:#3370ff;text-decoration:none}.lang strong{color:#16181d}
+.tool{margin:18px 0;padding:18px;border:1px solid #e7eaf3;border-radius:14px;background:linear-gradient(180deg,#fbfcff,#f6f8ff)}
+button{font-size:16px;padding:12px 22px;border:0;border-radius:10px;background:#3370ff;color:#fff;cursor:pointer;font-weight:600}
+button:hover{background:#255be0}
+.note{color:#8a90a2;font-size:12.5px;margin-top:10px}
+#fp{margin-top:16px}
+.fpid{font-family:ui-monospace,Consolas,monospace;font-size:20px;font-weight:700;color:#3370ff;word-break:break-all}
+.row{display:flex;justify-content:space-between;gap:12px;padding:7px 2px;border-bottom:1px solid #f0f2f7;font-size:13.5px}
+.row .k{color:#5a6072;flex:0 0 44%}.row .v{font-family:ui-monospace,Consolas,monospace;color:#16181d;text-align:right;word-break:break-all}
+table{border-collapse:collapse;width:100%;margin-top:12px;font-size:13.5px}
+td,th{border-bottom:1px solid #eef0f5;padding:9px 8px;text-align:left;vertical-align:top}
+th{color:#5a6072;font-weight:600}
+figure{margin:18px 0}figcaption{color:#8a90a2;font-size:12.5px;text-align:center;margin-top:6px}
+.i4data{margin-top:30px}
+.related{margin-top:28px;border-top:2px solid #eef0f5;padding-top:16px}
+.related a{color:#3370ff}
+.sources{font-size:13px;color:#5a6072}.sources a{color:#3370ff}
+footer{color:#8a90a2;font-size:12.5px;margin-top:28px;text-align:center;line-height:1.8}
+footer a{color:#8a90a2}
+svg{max-width:100%;height:auto}

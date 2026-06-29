@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="ms"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pemeriksa Cap Jari Pelayar - ujian canvas, WebGL, fon, zon waktu dan entropi</title>
+<meta name="description" content="Pemeriksa cap jari pelayar dalam talian percuma. Baca cap jari canvas, WebGL, fon, zon waktu, skrin dan User-Agent anda, dapatkan ID cap jari gabungan serta anggaran keunikan (entropi) berdasarkan kajian awam. Berjalan setempat, tiada data dimuat naik.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "Pemeriksa Cap Jari Pelayar",
+   "url": "https://iistostas.github.io/ms/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "ms",
+   "description": "Pemeriksa cap jari pelayar dalam talian percuma. Baca cap jari canvas, WebGL, fon, zon waktu, skrin dan User-Agent anda, dapatkan ID cap jari gabungan serta anggaran keunikan (entropi) berdasarkan kajian awam. Berjalan setempat, tiada data dimuat naik.",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "ms",
+   "url": "https://iistostas.github.io/ms/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Apakah cap jari pelayar?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Cap jari pelayar ialah pengecam yang dibentuk dengan menggabungkan atribut yang didedahkan pelayar dan peranti anda (user agent, skrin, zon waktu, fon, paparan canvas/WebGL dan lain-lain). Tanpa kuki pun, laman web boleh mengenali pelayar yang sama merentas lawatan."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Adakah pemeriksa ini selamat? Adakah ia memuat naik data saya?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tidak. Semua bacaan dan pengiraan berlaku setempat dalam pelayar dengan JavaScript; keputusan dipaparkan hanya pada halaman ini dan tidak pernah dihantar ke mana-mana pelayan atau disimpan."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Mengapa cap jari saya unik?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Atribut tunggal (seperti zon waktu) dikongsi ramai orang, tetapi belasan atribut digabung mewujudkan ruang nilai yang sangat besar. Kajian awam menunjukkan kebanyakan pelayar mempunyai cap jari gabungan yang unik, jadi boleh dijejak merentas laman tanpa log masuk."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Apakah cap jari canvas?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pelayar melukis teks atau bentuk yang sama ke canvas tersembunyi, kemudian pikselnya dibaca semula. GPU, pemacu, fon sistem dan anti-alias yang berbeza menghasilkan perbezaan kecil tetapi stabil, menjadikan canvas salah satu isyarat paling mengenali."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Adakah mod penyamaran menyembunyikan cap jari?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Kebanyakannya tidak. Mod peribadi membersihkan kuki dan sejarah setempat, tetapi canvas, WebGL, fon, zon waktu dan isyarat serupa masih terdedah, jadi mod peribadi sahaja tidak terlepas daripada penjejakan cap jari."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Bagaimana mengurangkan penjejakan cap jari?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Anda boleh mengecilkan pendedahan (guna tetapan biasa, lumpuhkan sebahagian API) atau guna pelayar anti-pengesanan untuk berbilang akaun - ia memberi setiap profil cap jari berasingan, terkawal dan konsisten supaya akaun kekal tidak terpaut."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Bolehkah VPN menukar cap jari saya?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tidak. VPN hanya menukar IP keluar; ia tidak menukar canvas, fon, zon waktu atau user-agent, jadi cap jari kekal sama selepas menukar IP."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <strong>Bahasa Melayu</strong> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>Pemeriksa Cap Jari Pelayar</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_ms.webp"><img src="/img/cover_ms.png" alt="Ilustrasi alat pemeriksa cap jari pelayar" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Rajah: Pemeriksa cap jari pelayar (canvas / WebGL / fon / zon waktu / entropi)</figcaption></figure>
+<p>Tekan butang untuk membaca isyarat cap jari yang didedahkan pelayar anda secara senyap - canvas, WebGL, fon dipasang, zon waktu, skrin dan User-Agent - kemudian dapatkan ID cap jari gabungan dan lihat betapa mudahnya setiap isyarat mengenali anda. Semua dikira setempat dalam pelayar; <strong>tiada data dimuat naik</strong>.</p>
+<div class="tool"><button id="run" type="button">Periksa cap jari saya</button><div class="note">Alat ini berjalan sepenuhnya dalam pelayar anda. Tiada data dimuat naik atau disimpan.</div><div id="fp"></div></div>
+<h2>Isyarat yang membentuk cap jari pelayar</h2>
+<p>Laman web tidak perlukan kuki: daripada beberapa soalan yang kelihatan tidak berbahaya yang dijawab pelayar, ia boleh menyusun pengecam yang agak stabil. Isyarat lazim termasuk perbezaan halus GPU dan pemacu semasa memapar <code>canvas</code>/<code>WebGL</code>, senarai fon dipasang, zon waktu, resolusi skrin dan kedalaman warna, bahasa, bilangan teras CPU, memori peranti dan sokongan sentuh. Setiap nilai tidak unik, tetapi <strong>apabila digabung</strong> biasanya menjadi unik.</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rajah 1: bagaimana laman web menyusun cap jari daripada isyarat yang dijawab pelayar, tanpa kuki"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>Rajah 1: bagaimana laman web menyusun cap jari daripada isyarat yang dijawab pelayar, tanpa kuki</figcaption></figure>
+<h2>Sejauh mana setiap isyarat mengenali (entropi)</h2>
+<p>Entropi mengukur berapa banyak maklumat pengenalan dibawa sesuatu isyarat (dalam bit - lebih tinggi lebih membezakan orang). Panopticlick EFF mengukur purata kira-kira <strong>18.1 bit</strong>, dengan lebih kurang 83.6% cap jari unik; AmIUnique (Laperdrix et al., 2016) mendapati kira-kira 89.4% unik daripada 118,000 sampel. Jadual di bawah memberi <strong>anggaran kasar setiap isyarat</strong> yang dirumus daripada kajian awam tersebut.</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_ms.webp"><img src="/img/board_ms.png" alt="Kuasa pengenalan relatif isyarat cap jari" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Rajah: setiap nilai tidak unik, tetapi gabungannya biasanya unik - begitulah penjejakan cap jari berfungsi</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rajah 2: kuasa pengenalan relatif (entropi) setiap isyarat - apabila digabung biasanya cukup untuk memastikan anda"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>Rajah 2: kuasa pengenalan relatif (entropi) setiap isyarat - apabila digabung biasanya cukup untuk memastikan anda</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>Entropi cap jari mengikut isyarat (anggaran 2026)</h2>
+<p>Berikut ialah <strong>anggaran 2026</strong> yang dirumus daripada kajian cap jari awam (EFF Panopticlick 2010, AmIUnique 2016), menunjukkan anggaran maklumat pengenalan setiap isyarat; <em>anggaran, bukan ukuran langsung, untuk rujukan sahaja.</em></p>
+<table><tr><th>Isyarat</th><th>Anggaran entropi (bit)</th><th>Asas</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Cincang canvas</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>Pemapar WebGL</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>Fon dikesan</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>Skrin dan kedalaman warna</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>Zon waktu</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>Bahasa</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>Soalan lazim</h2>
+<details class="faq"><summary><strong>Apakah cap jari pelayar?</strong></summary>
+<p>Cap jari pelayar ialah pengecam yang dibentuk dengan menggabungkan atribut yang didedahkan pelayar dan peranti anda (user agent, skrin, zon waktu, fon, paparan canvas/WebGL dan lain-lain). Tanpa kuki pun, laman web boleh mengenali pelayar yang sama merentas lawatan.</p></details>
+<details class="faq"><summary><strong>Adakah pemeriksa ini selamat? Adakah ia memuat naik data saya?</strong></summary>
+<p>Tidak. Semua bacaan dan pengiraan berlaku setempat dalam pelayar dengan JavaScript; keputusan dipaparkan hanya pada halaman ini dan tidak pernah dihantar ke mana-mana pelayan atau disimpan.</p></details>
+<details class="faq"><summary><strong>Mengapa cap jari saya unik?</strong></summary>
+<p>Atribut tunggal (seperti zon waktu) dikongsi ramai orang, tetapi belasan atribut digabung mewujudkan ruang nilai yang sangat besar. Kajian awam menunjukkan kebanyakan pelayar mempunyai cap jari gabungan yang unik, jadi boleh dijejak merentas laman tanpa log masuk.</p></details>
+<details class="faq"><summary><strong>Apakah cap jari canvas?</strong></summary>
+<p>Pelayar melukis teks atau bentuk yang sama ke canvas tersembunyi, kemudian pikselnya dibaca semula. GPU, pemacu, fon sistem dan anti-alias yang berbeza menghasilkan perbezaan kecil tetapi stabil, menjadikan canvas salah satu isyarat paling mengenali.</p></details>
+<details class="faq"><summary><strong>Adakah mod penyamaran menyembunyikan cap jari?</strong></summary>
+<p>Kebanyakannya tidak. Mod peribadi membersihkan kuki dan sejarah setempat, tetapi canvas, WebGL, fon, zon waktu dan isyarat serupa masih terdedah, jadi mod peribadi sahaja tidak terlepas daripada penjejakan cap jari.</p></details>
+<details class="faq"><summary><strong>Bagaimana mengurangkan penjejakan cap jari?</strong></summary>
+<p>Anda boleh mengecilkan pendedahan (guna tetapan biasa, lumpuhkan sebahagian API) atau guna pelayar anti-pengesanan untuk berbilang akaun - ia memberi setiap profil cap jari berasingan, terkawal dan konsisten supaya akaun kekal tidak terpaut.</p></details>
+<details class="faq"><summary><strong>Bolehkah VPN menukar cap jari saya?</strong></summary>
+<p>Tidak. VPN hanya menukar IP keluar; ia tidak menukar canvas, fon, zon waktu atau user-agent, jadi cap jari kekal sama selepas menukar IP.</p></details>
+<div class="sources"><h2>Rujukan (kajian awam)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>Berkaitan</h2>
+<p><a href="https://bitantidetect.com/download/">Muat turun BitBrowser (pelayar cap jari/anti-pautan)</a></p></div>
+</main>
+<footer>Konsep cap jari dan angka entropi pada halaman ini dirumus daripada kajian awam di bawah; alat membaca atribut sebenar pelayar anda sendiri. Penulis: Lin Yue.<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "ID cap jari gabungan anda", "uniq": "Keunikan", "uniqval": "Gabungan nilai ini berkemungkinan mengenal pasti - semakin luar biasa nilai anda, semakin mudah anda diasingkan daripada orang ramai.", "run": "Periksa cap jari saya", "note": "Alat ini berjalan sepenuhnya dalam pelayar anda. Tiada data dimuat naik atau disimpan.", "dim": {"ua": "User-Agent", "platform": "Platform / OS", "langs": "Bahasa", "screen": "Skrin dan kedalaman warna", "tz": "Zon waktu", "cpu": "Teras CPU", "mem": "Memori peranti", "touch": "Titik sentuh", "canvas": "Cincang canvas", "webglv": "Vendor WebGL", "webglr": "Pemapar WebGL", "fonts": "Fon dikesan", "audio": "Kadar sampel audio", "cookie": "Kuki aktif", "dnt": "Do Not Track", "fpid": "ID cap jari gabungan"}, "yes": "ya", "no": "tidak", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

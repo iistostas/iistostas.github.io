@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="my"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ဘရောက်ဇာ လက်ဗွေ စစ်ဆေးကိရိယာ - canvas, WebGL, ဖောင့်, အချိန်ဇုန် နှင့် entropy</title>
+<meta name="description" content="အခမဲ့ အွန်လိုင်း ဘရောက်ဇာ လက်ဗွေ စစ်ဆေးကိရိယာ။ သင့် canvas, WebGL, ဖောင့်, အချိန်ဇုန်, မျက်နှာပြင် နှင့် User-Agent လက်ဗွေကို ဖတ်ပြီး ပေါင်းစပ်လက်ဗွေ ID နှင့် အများသုံးသုတေသနအပေါ် အခြေခံသော တစ်မူထူးခြားမှု (entropy) ခန့်မှန်းချက်ကို ရယူပါ။ စက်တွင်းတွင် လည်ပတ်ပြီး ဒေတာ မတင်ပါ။">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "ဘရောက်ဇာ လက်ဗွေ စစ်ဆေးကိရိယာ",
+   "url": "https://iistostas.github.io/my/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "my",
+   "description": "အခမဲ့ အွန်လိုင်း ဘရောက်ဇာ လက်ဗွေ စစ်ဆေးကိရိယာ။ သင့် canvas, WebGL, ဖောင့်, အချိန်ဇုန်, မျက်နှာပြင် နှင့် User-Agent လက်ဗွေကို ဖတ်ပြီး ပေါင်းစပ်လက်ဗွေ ID နှင့် အများသုံးသုတေသနအပေါ် အခြေခံသော တစ်မူထူးခြားမှု (entropy) ခန့်မှန်းချက်ကို ရယူပါ။ စက်တွင်းတွင် လည်ပတ်ပြီး ဒေတာ မတင်ပါ။",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "my",
+   "url": "https://iistostas.github.io/my/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "ဘရောက်ဇာ လက်ဗွေ ဆိုသည်မှာ အဘယ်နည်း?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ဘရောက်ဇာ လက်ဗွေသည် သင့်ဘရောက်ဇာနှင့် စက်ပစ္စည်းက ဖော်ထုတ်သော အရည်အသွေးများ (user agent, မျက်နှာပြင်, အချိန်ဇုန်, ဖောင့်, canvas/WebGL ရင်ဒါ စသည်) ကို ပေါင်းစပ်၍ တည်ဆောက်သော အမှတ်အသား ဖြစ်သည်။ cookie မရှိသော်လည်း ဝဘ်ဆိုက်က တူညီသော ဘရောက်ဇာကို လည်ပတ်မှုများတစ်လျှောက် မှတ်မိနိုင်သည်။"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ဤစစ်ဆေးကိရိယာ လုံခြုံပါသလား? ကျွန်ုပ်ဒေတာ တင်ပါသလား?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "မတင်ပါ။ ဖတ်ခြင်းနှင့် တွက်ချက်ခြင်း အားလုံးကို ဘရောက်ဇာတွင် JavaScript ဖြင့် စက်တွင်း ပြုလုပ်သည်။ ရလဒ်ကို ဤစာမျက်နှာတွင်သာ ပြသပြီး မည်သည့် ဆာဗာသို့မျှ မပို့၊ မသိမ်းပါ။"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ကျွန်ုပ်၏ လက်ဗွေသည် အဘယ်ကြောင့် ထူးခြားသနည်း?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "အရည်အသွေးတစ်ခုတည်း (အချိန်ဇုန်ကဲ့သို့) ကို လူများစွာ မျှဝေသော်လည်း အရည်အသွေး ဆယ်စုကို ပေါင်းစပ်လိုက်လျှင် တန်ဖိုးနေရာ အလွန်ကြီးမားသွားသည်။ အများသုံးသုတေသနက ဘရောက်ဇာ အများစုတွင် ထူးခြားသော ပေါင်းစပ်လက်ဗွေ ရှိသည်ဟု ပြသ၍ login မလုပ်ဘဲ ဆိုက်များဖြတ်၍ ခြေရာခံနိုင်သည်။"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "canvas လက်ဗွေ ဆိုသည်မှာ အဘယ်နည်း?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ဘရောက်ဇာက တူညီသော စာသား သို့မဟုတ် ပုံကို ဖုံးကွယ်ထားသော canvas တွင် ဆွဲပြီး pixel များကို ပြန်ဖတ်သည်။ မတူသော GPU, driver, စနစ်ဖောင့် နှင့် anti-aliasing က သေးငယ်သော်လည်း တည်ငြိမ်သော ကွာခြားမှု ဖြစ်စေ၍ canvas သည် အခွဲခြားနိုင်ဆုံး အချက်ပြများထဲမှ တစ်ခု ဖြစ်သည်။"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "incognito mode က လက်ဗွေကို ဖုံးကွယ်နိုင်ပါသလား?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "အများအားဖြင့် မဖုံးကွယ်နိုင်ပါ။ private mode သည် cookie နှင့် စက်တွင်း မှတ်တမ်းကို အဓိက ရှင်းသော်လည်း canvas, WebGL, ဖောင့်, အချိန်ဇုန် စသော အချက်ပြများ ဆက်ဖော်ထုတ်နေသဖြင့် private mode တစ်ခုတည်းဖြင့် လက်ဗွေ ခြေရာခံမှုကို မလွတ်နိုင်ပါ။"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "လက်ဗွေ ခြေရာခံမှုကို မည်သို့ လျှော့ချမည်နည်း?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ဖော်ထုတ်မှုကို လျှော့ချနိုင်သည် (အသုံးများသော settings သုံး၊ အချို့ API ပိတ်) သို့မဟုတ် အကောင့်များအတွက် anti-detect ဘရောက်ဇာ သုံးနိုင်သည် — profile တစ်ခုစီကို သီးခြား၊ ထိန်းချုပ်နိုင်ပြီး ကိုက်ညီသော လက်ဗွေ သတ်မှတ်ပေး၍ အကောင့်များ မချိတ်ဆက်စေရန် ဖြစ်သည်။"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN က ကျွန်ုပ်၏ လက်ဗွေကို ပြောင်းနိုင်ပါသလား?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "မပြောင်းနိုင်ပါ။ VPN သည် ထွက်ပေါက် IP ကိုသာ ပြောင်းပြီး canvas, ဖောင့်, အချိန်ဇုန် သို့မဟုတ် user-agent ကို မပြောင်းသဖြင့် IP ပြောင်းပြီးနောက် လက်ဗွေ မပြောင်းပါ။"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <strong>မြန်မာ</strong></nav>
+<h1>ဘရောက်ဇာ လက်ဗွေ စစ်ဆေးကိရိယာ</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_my.webp"><img src="/img/cover_my.png" alt="ဘရောက်ဇာ လက်ဗွေ စစ်ဆေးကိရိယာ သရုပ်ဖော်ပုံ" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>ပုံ: ဘရောက်ဇာ လက်ဗွေ စစ်ဆေးကိရိယာ (canvas / WebGL / ဖောင့် / အချိန်ဇုန် / entropy)</figcaption></figure>
+<p>ခလုတ်ကို နှိပ်၍ သင့်ဘရောက်ဇာက တိတ်တဆိတ် ဖော်ထုတ်နေသော လက်ဗွေ အချက်ပြများ — canvas, WebGL, တပ်ဆင်ထားသော ဖောင့်, အချိန်ဇုန်, မျက်နှာပြင် နှင့် User-Agent — ကို ဖတ်ပြီး ပေါင်းစပ်လက်ဗွေ ID ကို တွက်ချက်ကာ အချက်ပြတစ်ခုစီက သင့်ကို မည်မျှ လွယ်ကူစွာ ခွဲခြားနိုင်သည်ကို ကြည့်ပါ။ အရာအားလုံးကို သင့်ဘရောက်ဇာတွင် စက်တွင်း တွက်ချက်ပြီး <strong>ဒေတာ မတင်ပါ</strong>။</p>
+<div class="tool"><button id="run" type="button">ကျွန်ုပ်၏ လက်ဗွေကို စစ်ဆေးပါ</button><div class="note">ဤကိရိယာသည် သင့်ဘရောက်ဇာတွင် အပြည့်အဝ လည်ပတ်သည်။ ဒေတာ မတင်၊ မသိမ်းပါ။</div><div id="fp"></div></div>
+<h2>ဘရောက်ဇာ လက်ဗွေကို ဖွဲ့စည်းသော အချက်ပြများ</h2>
+<p>ဝဘ်ဆိုက်သည် cookie မလို: ဘရောက်ဇာ ဖြေဆိုသော အန္တရာယ်မရှိဟု ထင်ရသော မေးခွန်းအနည်းငယ်မှပင် တော်တော်တည်ငြိမ်သော အမှတ်အသားတစ်ခု တည်ဆောက်နိုင်သည်။ အသုံးများသော အချက်ပြများတွင် <code>canvas</code>/<code>WebGL</code> ရင်ဒါလုပ်စဉ် GPU နှင့် driver ၏ သေးငယ်သော ကွာခြားမှု, တပ်ဆင်ထားသော ဖောင့်စာရင်း, အချိန်ဇုန်, မျက်နှာပြင် resolution နှင့် အရောင်အနက်, ဘာသာစကား, CPU core အရေအတွက်, စက်ပစ္စည်း memory နှင့် touch ပံ့ပိုးမှု ပါဝင်သည်။ တန်ဖိုးတစ်ခုချင်းသည် ထူးခြားမှု မရှိသော်လည်း <strong>ပေါင်းစပ်လိုက်သောအခါ</strong> များသောအားဖြင့် ထူးခြားသွားသည်။</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ပုံ 1: ဝဘ်ဆိုက်သည် cookie မသုံးဘဲ ဘရောက်ဇာ ဖြေဆိုသော အချက်ပြများမှ လက်ဗွေကို မည်သို့ ဖွဲ့စည်းသနည်း"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>ပုံ 1: ဝဘ်ဆိုက်သည် cookie မသုံးဘဲ ဘရောက်ဇာ ဖြေဆိုသော အချက်ပြများမှ လက်ဗွေကို မည်သို့ ဖွဲ့စည်းသနည်း</figcaption></figure>
+<h2>အချက်ပြတစ်ခုစီ မည်မျှ ခွဲခြားနိုင်သနည်း (entropy)</h2>
+<p>Entropy သည် အချက်ပြတစ်ခုက ခွဲခြားသိနိုင်သော သတင်းအချက်အလက် မည်မျှ သယ်ဆောင်သည်ကို တိုင်းတာသည် (bit ဖြင့် — မြင့်လေ လူခွဲခြားနိုင်လေ)။ EFF ၏ Panopticlick က ပျမ်းမျှ <strong>18.1 bit</strong> ခန့်၊ လက်ဗွေ 83.6% ခန့် ထူးခြားသည်ဟု တိုင်းတာသည်။ AmIUnique (Laperdrix et al., 2016) က နမူနာ 118,000 တွင် 89.4% ခန့် ထူးခြားသည်ကို တွေ့သည်။ အောက်ပါဇယားသည် ထို အများသုံးသုတေသနမှ စုစည်းထားသော <strong>အချက်ပြအလိုက် ကြမ်းကြမ်း ခန့်မှန်းချက်</strong> ဖြစ်သည်။</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_my.webp"><img src="/img/board_my.png" alt="လက်ဗွေ အချက်ပြများ၏ နှိုင်းရ ခွဲခြားနိုင်စွမ်း" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>ပုံ: တန်ဖိုးတစ်ခုချင်း ထူးခြားမှုမရှိသော်လည်း ပေါင်းစပ်လျှင် များသောအားဖြင့် ထူးခြား — ဤသည် လက်ဗွေ ခြေရာခံမှု၏ သဘော</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ပုံ 2: အချက်ပြတစ်ခုစီ၏ နှိုင်းရ ခွဲခြားနိုင်စွမ်း (entropy) — ပေါင်းစပ်လိုက်လျှင် များသောအားဖြင့် သင့်ကို တိကျစွာ ထောက်နိုင်သည်"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>ပုံ 2: အချက်ပြတစ်ခုစီ၏ နှိုင်းရ ခွဲခြားနိုင်စွမ်း (entropy) — ပေါင်းစပ်လိုက်လျှင် များသောအားဖြင့် သင့်ကို တိကျစွာ ထောက်နိုင်သည်</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>အချက်ပြအလိုက် လက်ဗွေ entropy (2026 ခန့်မှန်းချက်)</h2>
+<p>အောက်ပါတို့သည် အများသုံး လက်ဗွေ သုတေသန (EFF Panopticlick 2010, AmIUnique 2016) မှ စုစည်းထားသော <strong>2026 ခန့်မှန်းချက်</strong> ဖြစ်ပြီး အချက်ပြအလိုက် ခွဲခြားသိနိုင်သော သတင်းအချက်အလက် ခန့်မှန်းကို ပြသသည်။ <em>ခန့်မှန်းချက်၊ တိုက်ရိုက်တိုင်းတာမှု မဟုတ်၊ ကိုးကားရန်သာ။</em></p>
+<table><tr><th>အချက်ပြ</th><th>ခန့်မှန်း entropy (bit)</th><th>အခြေခံ</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Canvas hash</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>WebGL renderer</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>တွေ့ရှိ ဖောင့်</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>မျက်နှာပြင်နှင့် အရောင်အနက်</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>အချိန်ဇုန်</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>ဘာသာစကားများ</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>မေးလေ့ရှိသော မေးခွန်းများ</h2>
+<details class="faq"><summary><strong>ဘရောက်ဇာ လက်ဗွေ ဆိုသည်မှာ အဘယ်နည်း?</strong></summary>
+<p>ဘရောက်ဇာ လက်ဗွေသည် သင့်ဘရောက်ဇာနှင့် စက်ပစ္စည်းက ဖော်ထုတ်သော အရည်အသွေးများ (user agent, မျက်နှာပြင်, အချိန်ဇုန်, ဖောင့်, canvas/WebGL ရင်ဒါ စသည်) ကို ပေါင်းစပ်၍ တည်ဆောက်သော အမှတ်အသား ဖြစ်သည်။ cookie မရှိသော်လည်း ဝဘ်ဆိုက်က တူညီသော ဘရောက်ဇာကို လည်ပတ်မှုများတစ်လျှောက် မှတ်မိနိုင်သည်။</p></details>
+<details class="faq"><summary><strong>ဤစစ်ဆေးကိရိယာ လုံခြုံပါသလား? ကျွန်ုပ်ဒေတာ တင်ပါသလား?</strong></summary>
+<p>မတင်ပါ။ ဖတ်ခြင်းနှင့် တွက်ချက်ခြင်း အားလုံးကို ဘရောက်ဇာတွင် JavaScript ဖြင့် စက်တွင်း ပြုလုပ်သည်။ ရလဒ်ကို ဤစာမျက်နှာတွင်သာ ပြသပြီး မည်သည့် ဆာဗာသို့မျှ မပို့၊ မသိမ်းပါ။</p></details>
+<details class="faq"><summary><strong>ကျွန်ုပ်၏ လက်ဗွေသည် အဘယ်ကြောင့် ထူးခြားသနည်း?</strong></summary>
+<p>အရည်အသွေးတစ်ခုတည်း (အချိန်ဇုန်ကဲ့သို့) ကို လူများစွာ မျှဝေသော်လည်း အရည်အသွေး ဆယ်စုကို ပေါင်းစပ်လိုက်လျှင် တန်ဖိုးနေရာ အလွန်ကြီးမားသွားသည်။ အများသုံးသုတေသနက ဘရောက်ဇာ အများစုတွင် ထူးခြားသော ပေါင်းစပ်လက်ဗွေ ရှိသည်ဟု ပြသ၍ login မလုပ်ဘဲ ဆိုက်များဖြတ်၍ ခြေရာခံနိုင်သည်။</p></details>
+<details class="faq"><summary><strong>canvas လက်ဗွေ ဆိုသည်မှာ အဘယ်နည်း?</strong></summary>
+<p>ဘရောက်ဇာက တူညီသော စာသား သို့မဟုတ် ပုံကို ဖုံးကွယ်ထားသော canvas တွင် ဆွဲပြီး pixel များကို ပြန်ဖတ်သည်။ မတူသော GPU, driver, စနစ်ဖောင့် နှင့် anti-aliasing က သေးငယ်သော်လည်း တည်ငြိမ်သော ကွာခြားမှု ဖြစ်စေ၍ canvas သည် အခွဲခြားနိုင်ဆုံး အချက်ပြများထဲမှ တစ်ခု ဖြစ်သည်။</p></details>
+<details class="faq"><summary><strong>incognito mode က လက်ဗွေကို ဖုံးကွယ်နိုင်ပါသလား?</strong></summary>
+<p>အများအားဖြင့် မဖုံးကွယ်နိုင်ပါ။ private mode သည် cookie နှင့် စက်တွင်း မှတ်တမ်းကို အဓိက ရှင်းသော်လည်း canvas, WebGL, ဖောင့်, အချိန်ဇုန် စသော အချက်ပြများ ဆက်ဖော်ထုတ်နေသဖြင့် private mode တစ်ခုတည်းဖြင့် လက်ဗွေ ခြေရာခံမှုကို မလွတ်နိုင်ပါ။</p></details>
+<details class="faq"><summary><strong>လက်ဗွေ ခြေရာခံမှုကို မည်သို့ လျှော့ချမည်နည်း?</strong></summary>
+<p>ဖော်ထုတ်မှုကို လျှော့ချနိုင်သည် (အသုံးများသော settings သုံး၊ အချို့ API ပိတ်) သို့မဟုတ် အကောင့်များအတွက် anti-detect ဘရောက်ဇာ သုံးနိုင်သည် — profile တစ်ခုစီကို သီးခြား၊ ထိန်းချုပ်နိုင်ပြီး ကိုက်ညီသော လက်ဗွေ သတ်မှတ်ပေး၍ အကောင့်များ မချိတ်ဆက်စေရန် ဖြစ်သည်။</p></details>
+<details class="faq"><summary><strong>VPN က ကျွန်ုပ်၏ လက်ဗွေကို ပြောင်းနိုင်ပါသလား?</strong></summary>
+<p>မပြောင်းနိုင်ပါ။ VPN သည် ထွက်ပေါက် IP ကိုသာ ပြောင်းပြီး canvas, ဖောင့်, အချိန်ဇုန် သို့မဟုတ် user-agent ကို မပြောင်းသဖြင့် IP ပြောင်းပြီးနောက် လက်ဗွေ မပြောင်းပါ။</p></details>
+<div class="sources"><h2>ကိုးကားချက်များ (အများသုံး သုတေသန)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>ဆက်စပ်</h2>
+<p><a href="https://bitantidetect.com/download/">BitBrowser (လက်ဗွေ/ဆက်စပ်ကာကွယ် ဘရောက်ဇာ) ကို ဒေါင်းလုဒ်လုပ်ပါ</a></p></div>
+</main>
+<footer>ဤစာမျက်နှာရှိ လက်ဗွေ သဘောတရားနှင့် entropy ကိန်းဂဏန်းများကို အောက်ပါ အများသုံးသုတေသနမှ စုစည်းထားသည်။ ကိရိယာက သင့်ဘရောက်ဇာ၏ စစ်မှန်သော အရည်အသွေးများကို ဖတ်သည်။ စာရေးသူ: Lin Yue (林越)။<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "သင့် ပေါင်းစပ်လက်ဗွေ ID", "uniq": "တစ်မူထူးခြားမှု", "uniqval": "ဤတန်ဖိုးပေါင်းစပ်မှုသည် ခွဲခြားသိနိုင်ဖွယ် ရှိသည် — သင့်တန်ဖိုးများ ပုံမှန်မဟုတ်လေ လူအုပ်ထဲမှ သင့်ကို ခွဲထုတ်ရန် ပိုလွယ်လေဖြစ်သည်။", "run": "ကျွန်ုပ်၏ လက်ဗွေကို စစ်ဆေးပါ", "note": "ဤကိရိယာသည် သင့်ဘရောက်ဇာတွင် အပြည့်အဝ လည်ပတ်သည်။ ဒေတာ မတင်၊ မသိမ်းပါ။", "dim": {"ua": "User-Agent", "platform": "ပလက်ဖောင်း / OS", "langs": "ဘာသာစကားများ", "screen": "မျက်နှာပြင်နှင့် အရောင်အနက်", "tz": "အချိန်ဇုန်", "cpu": "CPU core", "mem": "စက်ပစ္စည်း memory", "touch": "touch အမှတ်", "canvas": "Canvas hash", "webglv": "WebGL ထုတ်လုပ်သူ", "webglr": "WebGL renderer", "fonts": "တွေ့ရှိ ဖောင့်", "audio": "အသံ sample rate", "cookie": "Cookie သုံးနိုင်", "dnt": "Do Not Track", "fpid": "ပေါင်းစပ်လက်ဗွေ ID"}, "yes": "ဟုတ်", "no": "မဟုတ်", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>瀏覽器指紋偵測器 - canvas/WebGL/字型/時區/UA 線上指紋與熵評估</title>
+<meta name="description" content="免費線上瀏覽器指紋偵測器：讀取你的 canvas、WebGL、字型、時區、螢幕與 User-Agent 指紋，給出合成指紋 ID 和基於公開研究的唯一性（熵）評估。全程在本機執行，不上傳任何資料。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "瀏覽器指紋偵測器",
+   "url": "https://iistostas.github.io/zh-tw/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "zh-Hant",
+   "description": "免費線上瀏覽器指紋偵測器：讀取你的 canvas、WebGL、字型、時區、螢幕與 User-Agent 指紋，給出合成指紋 ID 和基於公開研究的唯一性（熵）評估。全程在本機執行，不上傳任何資料。",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "zh-Hant",
+   "url": "https://iistostas.github.io/zh-tw/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "什麼是瀏覽器指紋？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "瀏覽器指紋是把你瀏覽器與裝置主動暴露的一組屬性（UA、螢幕、時區、字型、canvas/WebGL 算繪特徵等）組合後得到的識別碼。即使不用 cookie，網站也能用它在多次造訪間識別同一個瀏覽器。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "這個偵測器安全嗎？會上傳我的資料嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不會。所有讀取與計算都在你本機瀏覽器以 JavaScript 完成，結果只顯示在本頁面，不向任何伺服器傳送，也不儲存。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "為什麼我的指紋是唯一的？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "單一屬性（如時區）很多人相同，但十幾個屬性組合後取值空間極大。公開研究顯示大多數瀏覽器的組合指紋是唯一的，因此無需登入也能被跨站追蹤。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "canvas 指紋是什麼？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "讓瀏覽器把同一段文字／圖形畫進隱藏 canvas，再讀出像素。不同 GPU、驅動、系統字型與抗鋸齒會產生細微差異，這個差異相當穩定，是識別力很強的一個維度。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "無痕／隱私模式能隱藏指紋嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "基本不能。無痕模式主要清理 cookie 與本機歷史，但 canvas、WebGL、字型、時區等指紋訊號大多照舊暴露，所以單靠無痕模式無法擺脫指紋追蹤。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "怎樣降低被指紋識別的風險？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "可減少暴露面（統一常見設定、停用部分 API），或使用為多帳號設計的指紋瀏覽器——它給每個瀏覽環境分配一套獨立、可控且自洽的指紋，使各帳號互不關聯。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN 能改變我的指紋嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不能。VPN 只更換出口 IP，並不改變 canvas、字型、時區、UA 等瀏覽器層訊號，因此換了 IP 指紋依舊。"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <strong>繁體中文</strong> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>瀏覽器指紋偵測器</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_tw.webp"><img src="/img/cover_tw.png" alt="瀏覽器指紋偵測器工具示意圖" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>圖：瀏覽器指紋偵測器（canvas / WebGL / 字型 / 時區 / 熵評估）</figcaption></figure>
+<p>按下方按鈕，讀取你的瀏覽器在不知不覺中暴露的指紋訊號——canvas、WebGL、已安裝字型、時區、螢幕與 User-Agent——並算出一個合成指紋 ID，再看每個訊號有多容易把你單獨認出來。所有計算都在你本機瀏覽器內完成，<strong>不會上傳任何資料</strong>。</p>
+<div class="tool"><button id="run" type="button">偵測我的指紋</button><div class="note">本工具完全在你的瀏覽器本機執行，不上傳、不儲存任何資料。</div><div id="fp"></div></div>
+<h2>瀏覽器指紋由哪些訊號組成</h2>
+<p>網站不需要 cookie，光憑瀏覽器主動回答的一堆「無害」問題，就能拼出一個相當穩定的識別碼。常見維度包括：算繪 <code>canvas</code>/<code>WebGL</code> 時顯示卡與驅動的細微差異、已安裝字型清單、時區、螢幕解析度與色深、語言、CPU 核心數、裝置記憶體、是否觸控等。單看每一項都不唯一，但<strong>組合在一起</strong>往往就唯一了。</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="圖1：網站如何在不用 cookie 的情況下，靠瀏覽器主動回答的訊號拼出指紋"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>圖1：網站如何在不用 cookie 的情況下，靠瀏覽器主動回答的訊號拼出指紋</figcaption></figure>
+<h2>每個訊號有多「認人」（熵）</h2>
+<p>「熵」衡量一個訊號能提供多少識別資訊（單位 bit，越高越能區分人）。EFF 的 Panopticlick 早期研究測得：在參與瀏覽器中平均約 <strong>18.1 bit</strong>、約 83.6% 的瀏覽器指紋是唯一的；AmIUnique（Laperdrix 等，2016）在 11.8 萬樣本上得到約 89.4% 唯一。下表是綜合這些公開研究、按維度給出的<strong>粗略估算</strong>。</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_tw.webp"><img src="/img/board_tw.png" alt="各指紋維度識別力示意圖" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>圖：單項不唯一，組合後通常唯一——這正是指紋追蹤的原理</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="圖2：各指紋維度的相對識別力（熵），組合後通常足以唯一定位"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>圖2：各指紋維度的相對識別力（熵），組合後通常足以唯一定位</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>各訊號指紋熵（2026 估算）</h2>
+<p>下列為綜合公開指紋研究（EFF Panopticlick 2010、AmIUnique 2016）後給出的 <strong>2026 估算</strong>，按維度列出大致可識別資訊量； <em>估算·非一手實測·僅供參考。</em></p>
+<table><tr><th>指紋維度</th><th>估算熵（bit）</th><th>依據</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Canvas 雜湊</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>WebGL 算繪器</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>偵測到的字型數</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>螢幕與色深</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>時區</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>語言</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>常見問題</h2>
+<details class="faq"><summary><strong>什麼是瀏覽器指紋？</strong></summary>
+<p>瀏覽器指紋是把你瀏覽器與裝置主動暴露的一組屬性（UA、螢幕、時區、字型、canvas/WebGL 算繪特徵等）組合後得到的識別碼。即使不用 cookie，網站也能用它在多次造訪間識別同一個瀏覽器。</p></details>
+<details class="faq"><summary><strong>這個偵測器安全嗎？會上傳我的資料嗎？</strong></summary>
+<p>不會。所有讀取與計算都在你本機瀏覽器以 JavaScript 完成，結果只顯示在本頁面，不向任何伺服器傳送，也不儲存。</p></details>
+<details class="faq"><summary><strong>為什麼我的指紋是唯一的？</strong></summary>
+<p>單一屬性（如時區）很多人相同，但十幾個屬性組合後取值空間極大。公開研究顯示大多數瀏覽器的組合指紋是唯一的，因此無需登入也能被跨站追蹤。</p></details>
+<details class="faq"><summary><strong>canvas 指紋是什麼？</strong></summary>
+<p>讓瀏覽器把同一段文字／圖形畫進隱藏 canvas，再讀出像素。不同 GPU、驅動、系統字型與抗鋸齒會產生細微差異，這個差異相當穩定，是識別力很強的一個維度。</p></details>
+<details class="faq"><summary><strong>無痕／隱私模式能隱藏指紋嗎？</strong></summary>
+<p>基本不能。無痕模式主要清理 cookie 與本機歷史，但 canvas、WebGL、字型、時區等指紋訊號大多照舊暴露，所以單靠無痕模式無法擺脫指紋追蹤。</p></details>
+<details class="faq"><summary><strong>怎樣降低被指紋識別的風險？</strong></summary>
+<p>可減少暴露面（統一常見設定、停用部分 API），或使用為多帳號設計的指紋瀏覽器——它給每個瀏覽環境分配一套獨立、可控且自洽的指紋，使各帳號互不關聯。</p></details>
+<details class="faq"><summary><strong>VPN 能改變我的指紋嗎？</strong></summary>
+<p>不能。VPN 只更換出口 IP，並不改變 canvas、字型、時區、UA 等瀏覽器層訊號，因此換了 IP 指紋依舊。</p></details>
+<div class="sources"><h2>參考資料（公開研究）</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>相關</h2>
+<p><a href="https://bitantidetect.com/download/">下載比特瀏覽器（指紋／防關聯瀏覽器）</a></p></div>
+</main>
+<footer>本頁指紋原理與熵資料綜合自下列公開研究，工具讀取的是你本機瀏覽器的真實屬性。作者：林越。<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "你的合成指紋 ID", "uniq": "唯一性", "uniqval": "這組取值組合很可能可被單獨識別——你的取值越罕見，就越容易被從人群中挑出來。", "run": "偵測我的指紋", "note": "本工具完全在你的瀏覽器本機執行，不上傳、不儲存任何資料。", "dim": {"ua": "User-Agent", "platform": "平台 / 系統", "langs": "語言", "screen": "螢幕與色深", "tz": "時區", "cpu": "CPU 核心數", "mem": "裝置記憶體", "touch": "觸控點數", "canvas": "Canvas 雜湊", "webglv": "WebGL 廠商", "webglr": "WebGL 算繪器", "fonts": "偵測到的字型數", "audio": "音訊取樣率", "cookie": "Cookie 可用", "dnt": "Do Not Track", "fpid": "合成指紋 ID"}, "yes": "是", "no": "否", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

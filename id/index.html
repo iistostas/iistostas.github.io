@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pemeriksa Sidik Jari Browser - tes canvas, WebGL, font, zona waktu dan entropi</title>
+<meta name="description" content="Pemeriksa sidik jari browser online gratis. Baca sidik jari canvas, WebGL, font, zona waktu, layar, dan User-Agent Anda, dapatkan ID sidik jari gabungan serta perkiraan keunikan (entropi) berdasarkan riset publik. Berjalan lokal, tidak ada data yang diunggah.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "Pemeriksa Sidik Jari Browser",
+   "url": "https://iistostas.github.io/id/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "id",
+   "description": "Pemeriksa sidik jari browser online gratis. Baca sidik jari canvas, WebGL, font, zona waktu, layar, dan User-Agent Anda, dapatkan ID sidik jari gabungan serta perkiraan keunikan (entropi) berdasarkan riset publik. Berjalan lokal, tidak ada data yang diunggah.",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "id",
+   "url": "https://iistostas.github.io/id/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Apa itu sidik jari browser?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sidik jari browser adalah pengenal yang dibentuk dengan menggabungkan atribut yang diungkap browser dan perangkat Anda (user agent, layar, zona waktu, font, render canvas/WebGL, dan lainnya). Tanpa cookie pun, situs dapat mengenali browser yang sama antar kunjungan."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Apakah pemeriksa ini aman? Apakah mengunggah data saya?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tidak. Semua pembacaan dan perhitungan terjadi lokal di browser dengan JavaScript; hasil hanya ditampilkan di halaman ini dan tidak pernah dikirim ke server atau disimpan."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Mengapa sidik jari saya unik?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Atribut tunggal (seperti zona waktu) dimiliki banyak orang, tetapi belasan atribut yang digabung menciptakan ruang nilai yang sangat besar. Riset publik menunjukkan sebagian besar browser punya sidik jari gabungan yang unik, sehingga bisa dilacak antar situs tanpa login."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Apa itu sidik jari canvas?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Browser menggambar teks atau bentuk yang sama ke canvas tersembunyi, lalu pikselnya dibaca kembali. GPU, driver, font sistem, dan anti-aliasing yang berbeda menghasilkan perbedaan kecil namun stabil, menjadikan canvas salah satu sinyal paling mengenali."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Apakah mode penyamaran menyembunyikan sidik jari?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Umumnya tidak. Mode privat membersihkan cookie dan riwayat lokal, tetapi canvas, WebGL, font, zona waktu, dan sinyal serupa tetap terungkap, jadi mode privat saja tidak lepas dari pelacakan sidik jari."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Bagaimana mengurangi pelacakan sidik jari?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Anda bisa memperkecil paparan (pakai pengaturan umum, nonaktifkan sebagian API) atau memakai browser anti-deteksi untuk banyak akun - ia memberi tiap profil sidik jari terpisah, terkendali, dan konsisten sehingga akun tetap tak terkait."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Bisakah VPN mengubah sidik jari saya?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tidak. VPN hanya mengganti IP keluar; ia tidak mengubah canvas, font, zona waktu, atau user-agent, sehingga sidik jari tetap sama setelah ganti IP."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <strong>Bahasa Indonesia</strong> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>Pemeriksa Sidik Jari Browser</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_id.webp"><img src="/img/cover_id.png" alt="Ilustrasi alat pemeriksa sidik jari browser" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Gbr: Pemeriksa sidik jari browser (canvas / WebGL / font / zona waktu / entropi)</figcaption></figure>
+<p>Tekan tombol untuk membaca sinyal sidik jari yang diam-diam diungkap browser Anda - canvas, WebGL, font terpasang, zona waktu, layar, dan User-Agent - lalu dapatkan ID sidik jari gabungan dan lihat seberapa mudah tiap sinyal mengenali Anda. Semua dihitung lokal di browser; <strong>tidak ada data yang diunggah</strong>.</p>
+<div class="tool"><button id="run" type="button">Periksa sidik jari saya</button><div class="note">Alat ini berjalan sepenuhnya di browser Anda. Tidak ada data yang diunggah atau disimpan.</div><div id="fp"></div></div>
+<h2>Sinyal penyusun sidik jari browser</h2>
+<p>Situs tidak perlu cookie: dari sejumlah pertanyaan yang tampak tak berbahaya yang dijawab browser, ia bisa menyusun pengenal yang cukup stabil. Sinyal umum meliputi perbedaan halus GPU dan driver saat merender <code>canvas</code>/<code>WebGL</code>, daftar font terpasang, zona waktu, resolusi layar dan kedalaman warna, bahasa, jumlah inti CPU, memori perangkat, dan dukungan sentuh. Tiap nilai tidak unik, tetapi <strong>jika digabung</strong> biasanya menjadi unik.</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gbr 1: bagaimana situs menyusun sidik jari dari sinyal yang dijawab browser, tanpa cookie"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>Gbr 1: bagaimana situs menyusun sidik jari dari sinyal yang dijawab browser, tanpa cookie</figcaption></figure>
+<h2>Seberapa mengenali tiap sinyal (entropi)</h2>
+<p>Entropi mengukur seberapa banyak informasi pengenal yang dibawa sebuah sinyal (dalam bit - makin tinggi makin membedakan orang). Panopticlick dari EFF mengukur rata-rata sekitar <strong>18,1 bit</strong>, dengan sekitar 83,6% sidik jari unik; AmIUnique (Laperdrix dkk., 2016) menemukan sekitar 89,4% unik pada 118.000 sampel. Tabel berikut memberi <strong>perkiraan kasar per sinyal</strong> dari riset publik tersebut.</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_id.webp"><img src="/img/board_id.png" alt="Kekuatan pengenal relatif sinyal sidik jari" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>Gbr: tiap nilai tidak unik, tetapi gabungannya biasanya unik - begitulah pelacakan sidik jari bekerja</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gbr 2: kekuatan pengenal relatif (entropi) tiap sinyal - jika digabung biasanya cukup untuk memastikan Anda"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>Gbr 2: kekuatan pengenal relatif (entropi) tiap sinyal - jika digabung biasanya cukup untuk memastikan Anda</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>Entropi sidik jari per sinyal (perkiraan 2026)</h2>
+<p>Berikut adalah <strong>perkiraan 2026</strong> yang dirangkum dari riset sidik jari publik (EFF Panopticlick 2010, AmIUnique 2016), menunjukkan perkiraan informasi pengenal per sinyal; <em>perkiraan, bukan pengukuran langsung, hanya untuk acuan.</em></p>
+<table><tr><th>Sinyal</th><th>Perk. entropi (bit)</th><th>Dasar</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Hash canvas</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>Perender WebGL</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>Font terdeteksi</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>Layar dan kedalaman warna</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>Zona waktu</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>Bahasa</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>Pertanyaan umum</h2>
+<details class="faq"><summary><strong>Apa itu sidik jari browser?</strong></summary>
+<p>Sidik jari browser adalah pengenal yang dibentuk dengan menggabungkan atribut yang diungkap browser dan perangkat Anda (user agent, layar, zona waktu, font, render canvas/WebGL, dan lainnya). Tanpa cookie pun, situs dapat mengenali browser yang sama antar kunjungan.</p></details>
+<details class="faq"><summary><strong>Apakah pemeriksa ini aman? Apakah mengunggah data saya?</strong></summary>
+<p>Tidak. Semua pembacaan dan perhitungan terjadi lokal di browser dengan JavaScript; hasil hanya ditampilkan di halaman ini dan tidak pernah dikirim ke server atau disimpan.</p></details>
+<details class="faq"><summary><strong>Mengapa sidik jari saya unik?</strong></summary>
+<p>Atribut tunggal (seperti zona waktu) dimiliki banyak orang, tetapi belasan atribut yang digabung menciptakan ruang nilai yang sangat besar. Riset publik menunjukkan sebagian besar browser punya sidik jari gabungan yang unik, sehingga bisa dilacak antar situs tanpa login.</p></details>
+<details class="faq"><summary><strong>Apa itu sidik jari canvas?</strong></summary>
+<p>Browser menggambar teks atau bentuk yang sama ke canvas tersembunyi, lalu pikselnya dibaca kembali. GPU, driver, font sistem, dan anti-aliasing yang berbeda menghasilkan perbedaan kecil namun stabil, menjadikan canvas salah satu sinyal paling mengenali.</p></details>
+<details class="faq"><summary><strong>Apakah mode penyamaran menyembunyikan sidik jari?</strong></summary>
+<p>Umumnya tidak. Mode privat membersihkan cookie dan riwayat lokal, tetapi canvas, WebGL, font, zona waktu, dan sinyal serupa tetap terungkap, jadi mode privat saja tidak lepas dari pelacakan sidik jari.</p></details>
+<details class="faq"><summary><strong>Bagaimana mengurangi pelacakan sidik jari?</strong></summary>
+<p>Anda bisa memperkecil paparan (pakai pengaturan umum, nonaktifkan sebagian API) atau memakai browser anti-deteksi untuk banyak akun - ia memberi tiap profil sidik jari terpisah, terkendali, dan konsisten sehingga akun tetap tak terkait.</p></details>
+<details class="faq"><summary><strong>Bisakah VPN mengubah sidik jari saya?</strong></summary>
+<p>Tidak. VPN hanya mengganti IP keluar; ia tidak mengubah canvas, font, zona waktu, atau user-agent, sehingga sidik jari tetap sama setelah ganti IP.</p></details>
+<div class="sources"><h2>Referensi (riset publik)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>Terkait</h2>
+<p><a href="https://bitantidetect.com/download/">Unduh BitBrowser (browser sidik jari/anti-deteksi)</a></p></div>
+</main>
+<footer>Konsep sidik jari dan angka entropi di halaman ini dirangkum dari riset publik di bawah; alat membaca atribut nyata dari browser Anda sendiri. Penulis: Lin Yue.<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "ID sidik jari gabungan Anda", "uniq": "Keunikan", "uniqval": "Kombinasi nilai ini kemungkinan dapat mengidentifikasi - makin tidak biasa nilai Anda, makin mudah dipisahkan dari keramaian.", "run": "Periksa sidik jari saya", "note": "Alat ini berjalan sepenuhnya di browser Anda. Tidak ada data yang diunggah atau disimpan.", "dim": {"ua": "User-Agent", "platform": "Platform / OS", "langs": "Bahasa", "screen": "Layar dan kedalaman warna", "tz": "Zona waktu", "cpu": "Inti CPU", "mem": "Memori perangkat", "touch": "Titik sentuh", "canvas": "Hash canvas", "webglv": "Vendor WebGL", "webglr": "Perender WebGL", "fonts": "Font terdeteksi", "audio": "Laju sampel audio", "cookie": "Cookie aktif", "dnt": "Do Not Track", "fpid": "ID sidik jari gabungan"}, "yes": "ya", "no": "tidak", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

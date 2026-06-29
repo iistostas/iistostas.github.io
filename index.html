@@ -1,35 +1,162 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>比特浏览器 指纹版 - 官方资源与在线工具</title>
-<meta name="description" content="比特浏览器相关资源导航：官网入口与免费在线小工具。比特浏览器是一款指纹浏览器，通过为每个浏览器环境配置独立指纹，帮助用户实现多账号">
+<title>浏览器指纹检测器 - canvas/WebGL/字体/时区/UA 在线指纹与熵评估</title>
+<meta name="description" content="免费在线浏览器指纹检测器：读取你的 canvas、WebGL、字体、时区、屏幕与 User-Agent 指纹，给出合成指纹 ID 和基于公开研究的唯一性（熵）评估。全程本地运行，不上传任何数据。">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://iistostas.github.io/">
-<meta property="og:title" content="比特浏览器 指纹版">
-<meta property="og:description" content="比特浏览器官网入口与免费在线小工具。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://iistostas.github.io/">
-<style>:root{--b:#1a73e8}*{box-sizing:border-box}body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;max-width:760px;margin:0 auto;padding:24px;color:#1f2937;line-height:1.7;background:#fff}h1{color:var(--b);font-size:1.6rem;margin:.2em 0}h2{font-size:1.2rem;margin-top:1.6em;border-left:4px solid var(--b);padding-left:10px}.card{border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin:16px 0;background:#fafafa}a{color:var(--b)}footer{margin-top:40px;padding-top:16px;border-top:1px solid #eee;color:#9ca3af;font-size:.85rem}</style>
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "浏览器指纹检测器",
+   "url": "https://iistostas.github.io/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "zh-Hans",
+   "description": "免费在线浏览器指纹检测器：读取你的 canvas、WebGL、字体、时区、屏幕与 User-Agent 指纹，给出合成指纹 ID 和基于公开研究的唯一性（熵）评估。全程本地运行，不上传任何数据。",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "zh-Hans",
+   "url": "https://iistostas.github.io/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "什么是浏览器指纹？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "浏览器指纹是把你浏览器与设备主动暴露的一组属性（UA、屏幕、时区、字体、canvas/WebGL 渲染特征等）组合后得到的标识。即使不用 cookie，网站也能用它在多次访问间识别同一个浏览器。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "这个检测器安全吗？会上传我的数据吗？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不会。所有读取与计算都在你本地浏览器用 JavaScript 完成，结果只显示在本页面，不向任何服务器发送，也不保存。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "为什么我的指纹是唯一的？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "单个属性（如时区）很多人相同，但十几个属性组合后取值空间极大。公开研究显示大多数浏览器的组合指纹是唯一的，因此无需登录也能被跨站跟踪。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "canvas 指纹是什么？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "让浏览器把同一段文字/图形画进隐藏 canvas，再读出像素。不同 GPU、驱动、系统字体与抗锯齿会产生细微差异，这个差异相当稳定，是识别力很强的一个维度。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "无痕/隐身模式能隐藏指纹吗？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "基本不能。无痕模式主要清理 cookie 与本地历史，但 canvas、WebGL、字体、时区等指纹信号大多照旧暴露，所以单靠无痕模式无法摆脱指纹跟踪。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "怎样降低被指纹识别的风险？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "可减少暴露面（统一常见配置、禁用部分 API），或使用为多账号设计的指纹浏览器——它给每个浏览环境分配一套独立、可控且自洽的指纹，使各账号互不关联。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN 能改变我的指纹吗？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不能。VPN 只更换出口 IP，并不改变 canvas、字体、时区、UA 等浏览器层信号，因此换了 IP 指纹依旧。"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
-<body>
-<h1>比特浏览器</h1>
-<p>比特浏览器是一款指纹浏览器，通过为每个浏览器环境配置独立指纹，帮助用户实现多账号隔离与防关联。</p>
-<div class="card">
-<h2 style="margin-top:0;border:0;padding:0">官方网站</h2>
-<p>访问 比特浏览器 官方网站，了解完整功能与下载方式：<br>
-<a href="https://bitantidetect.com/"><strong>bitantidetect.com</strong></a></p>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <strong>简体中文</strong> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <a href="/km/">ភាសាខ្មែរ</a> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>浏览器指纹检测器</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_zh.webp"><img src="/img/cover_zh.png" alt="浏览器指纹检测器工具示意图" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>图：浏览器指纹检测器（canvas / WebGL / 字体 / 时区 / 熵评估）</figcaption></figure>
+<p>点下面的按钮，读取你的浏览器在不知不觉中暴露的指纹信号——canvas、WebGL、安装字体、时区、屏幕与 User-Agent——并算出一个合成指纹 ID，再看每个信号有多容易把你单独认出来。所有计算都在你本地浏览器里完成，<strong>不会上传任何数据</strong>。</p>
+<div class="tool"><button id="run" type="button">检测我的指纹</button><div class="note">本工具完全在你的浏览器本地运行，不上传、不保存任何数据。</div><div id="fp"></div></div>
+<h2>浏览器指纹由哪些信号组成</h2>
+<p>网站不需要 cookie，光凭浏览器主动回答的一堆“无害”问题，就能拼出一个相当稳定的标识。常见维度包括：渲染 <code>canvas</code>/<code>WebGL</code> 时显卡与驱动的细微差异、已安装字体清单、时区、屏幕分辨率与色深、语言、CPU 核心数、设备内存、是否触屏等。单看每一项都不唯一，但<strong>组合到一起</strong>往往就唯一了。</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="图1：网站如何在不用 cookie 的情况下，靠浏览器主动回答的信号拼出指纹"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>图1：网站如何在不用 cookie 的情况下，靠浏览器主动回答的信号拼出指纹</figcaption></figure>
+<h2>每个信号有多“认人”（熵）</h2>
+<p>“熵”衡量一个信号能提供多少识别信息（单位 bit，越高越能区分人）。EFF 的 Panopticlick 早期研究测得：在参与浏览器里平均约 <strong>18.1 bit</strong>、约 83.6% 的浏览器指纹是唯一的；AmIUnique（Laperdrix 等，2016）在 11.8 万样本上得到约 89.4% 唯一。下表是综合这些公开研究、按维度给出的<strong>粗略估算</strong>。</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_zh.webp"><img src="/img/board_zh.png" alt="各指纹维度识别力示意图" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>图：单项不唯一，组合后通常唯一——这正是指纹跟踪的原理</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="图2：各指纹维度的相对识别力（熵），组合后通常足以唯一定位"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>图2：各指纹维度的相对识别力（熵），组合后通常足以唯一定位</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>各信号指纹熵（2026 估算）</h2>
+<p>下列为综合公开指纹研究（EFF Panopticlick 2010、AmIUnique 2016）后给出的 <strong>2026 估算</strong>，按维度列出大致可识别信息量； <em>估算·非一手实测·仅供参考。</em></p>
+<table><tr><th>指纹维度</th><th>估算熵（bit）</th><th>依据</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Canvas 哈希</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>WebGL 渲染器</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>检测到的字体数</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>屏幕与色深</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>时区</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>语言</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>常见问题</h2>
+<details class="faq"><summary><strong>什么是浏览器指纹？</strong></summary>
+<p>浏览器指纹是把你浏览器与设备主动暴露的一组属性（UA、屏幕、时区、字体、canvas/WebGL 渲染特征等）组合后得到的标识。即使不用 cookie，网站也能用它在多次访问间识别同一个浏览器。</p></details>
+<details class="faq"><summary><strong>这个检测器安全吗？会上传我的数据吗？</strong></summary>
+<p>不会。所有读取与计算都在你本地浏览器用 JavaScript 完成，结果只显示在本页面，不向任何服务器发送，也不保存。</p></details>
+<details class="faq"><summary><strong>为什么我的指纹是唯一的？</strong></summary>
+<p>单个属性（如时区）很多人相同，但十几个属性组合后取值空间极大。公开研究显示大多数浏览器的组合指纹是唯一的，因此无需登录也能被跨站跟踪。</p></details>
+<details class="faq"><summary><strong>canvas 指纹是什么？</strong></summary>
+<p>让浏览器把同一段文字/图形画进隐藏 canvas，再读出像素。不同 GPU、驱动、系统字体与抗锯齿会产生细微差异，这个差异相当稳定，是识别力很强的一个维度。</p></details>
+<details class="faq"><summary><strong>无痕/隐身模式能隐藏指纹吗？</strong></summary>
+<p>基本不能。无痕模式主要清理 cookie 与本地历史，但 canvas、WebGL、字体、时区等指纹信号大多照旧暴露，所以单靠无痕模式无法摆脱指纹跟踪。</p></details>
+<details class="faq"><summary><strong>怎样降低被指纹识别的风险？</strong></summary>
+<p>可减少暴露面（统一常见配置、禁用部分 API），或使用为多账号设计的指纹浏览器——它给每个浏览环境分配一套独立、可控且自洽的指纹，使各账号互不关联。</p></details>
+<details class="faq"><summary><strong>VPN 能改变我的指纹吗？</strong></summary>
+<p>不能。VPN 只更换出口 IP，并不改变 canvas、字体、时区、UA 等浏览器层信号，因此换了 IP 指纹依旧。</p></details>
+<div class="sources"><h2>参考资料（公开研究）</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>相关</h2>
+<p><a href="https://bitantidetect.com/download/">下载比特浏览器（指纹/防关联浏览器）</a></p></div>
+</main>
+<footer>本页指纹原理与熵数据综合自下列公开研究，工具读取的是你本机浏览器的真实属性。作者：林越。<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
 </div>
-<div class="card">
-<h2 style="margin-top:0;border:0;padding:0">免费在线小工具</h2>
-<p>本站还为 比特浏览器 用户提供一个纯本地运行的小工具（数据不上传）：<br>
-<a href="https://iistostas.github.io/bitantidetect-fingerprint-checker/">浏览器指纹检测 →</a></p>
-</div>
-<h2>关于 比特浏览器</h2>
-<p>比特浏览器是一款指纹浏览器，通过为每个浏览器环境配置独立指纹，帮助用户实现多账号隔离与防关联。 更多信息与下载请访问 <a href="https://bitantidetect.com/">比特浏览器官网</a>。</p>
-<footer>
-<p>本页为 比特浏览器 相关资源导航页，工具均在本地浏览器处理、不上传服务器。</p>
-<p>官网：<a href="https://bitantidetect.com/">bitantidetect.com</a> · 最后更新：2026-06</p>
-</footer>
-</body>
-</html>
+<script>window.FPL={"idlbl": "你的合成指纹 ID", "uniq": "唯一性", "uniqval": "这组取值组合很可能可被单独识别——你的取值越罕见，就越容易被从人群里挑出来。", "run": "检测我的指纹", "note": "本工具完全在你的浏览器本地运行，不上传、不保存任何数据。", "dim": {"ua": "User-Agent", "platform": "平台 / 系统", "langs": "语言", "screen": "屏幕与色深", "tz": "时区", "cpu": "CPU 核心数", "mem": "设备内存", "touch": "触摸点数", "canvas": "Canvas 哈希", "webglv": "WebGL 厂商", "webglr": "WebGL 渲染器", "fonts": "检测到的字体数", "audio": "音频采样率", "cookie": "Cookie 可用", "dnt": "Do Not Track", "fpid": "合成指纹 ID"}, "yes": "是", "no": "否", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>

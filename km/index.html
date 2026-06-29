@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="km"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ឧបករណ៍ពិនិត្យស្នាមម្រាមដៃកម្មវិធីរុករក - canvas, WebGL, ពុម្ពអក្សរ, តំបន់ពេលវេលា និង entropy</title>
+<meta name="description" content="ឧបករណ៍ពិនិត្យស្នាមម្រាមដៃកម្មវិធីរុករកលើបណ្ដាញដោយឥតគិតថ្លៃ។ អានស្នាមម្រាមដៃ canvas, WebGL, ពុម្ពអក្សរ, តំបន់ពេលវេលា, អេក្រង់ និង User-Agent របស់អ្នក ទទួលលេខសម្គាល់ស្នាមម្រាមដៃរួម និងការប៉ាន់ស្មានភាពតែមួយគត់ (entropy) ផ្អែកលើការស្រាវជ្រាវសាធារណៈ។ ដំណើរការក្នុងម៉ាស៊ីន មិនបញ្ជូនទិន្នន័យឡើយ។">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="zh-Hans" href="https://iistostas.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://iistostas.github.io/zh-tw/">
+<link rel="alternate" hreflang="en" href="https://iistostas.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://iistostas.github.io/ja/">
+<link rel="alternate" hreflang="id" href="https://iistostas.github.io/id/">
+<link rel="alternate" hreflang="th" href="https://iistostas.github.io/th/">
+<link rel="alternate" hreflang="vi" href="https://iistostas.github.io/vi/">
+<link rel="alternate" hreflang="ms" href="https://iistostas.github.io/ms/">
+<link rel="alternate" hreflang="fil" href="https://iistostas.github.io/fil/">
+<link rel="alternate" hreflang="km" href="https://iistostas.github.io/km/">
+<link rel="alternate" hreflang="lo" href="https://iistostas.github.io/lo/">
+<link rel="alternate" hreflang="my" href="https://iistostas.github.io/my/">
+<link rel="alternate" hreflang="x-default" href="https://iistostas.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "ឧបករណ៍ពិនិត្យស្នាមម្រាមដៃកម្មវិធីរុករក",
+   "url": "https://iistostas.github.io/km/",
+   "applicationCategory": "SecurityApplication",
+   "operatingSystem": "Web browser",
+   "inLanguage": "km",
+   "description": "ឧបករណ៍ពិនិត្យស្នាមម្រាមដៃកម្មវិធីរុករកលើបណ្ដាញដោយឥតគិតថ្លៃ។ អានស្នាមម្រាមដៃ canvas, WebGL, ពុម្ពអក្សរ, តំបន់ពេលវេលា, អេក្រង់ និង User-Agent របស់អ្នក ទទួលលេខសម្គាល់ស្នាមម្រាមដៃរួម និងការប៉ាន់ស្មានភាពតែមួយគត់ (entropy) ផ្អែកលើការស្រាវជ្រាវសាធារណៈ។ ដំណើរការក្នុងម៉ាស៊ីន មិនបញ្ជូនទិន្នន័យឡើយ។",
+   "isAccessibleForFree": true,
+   "browserRequirements": "Requires JavaScript",
+   "author": {
+    "@type": "Person",
+    "name": "林越",
+    "url": "https://iistostas.github.io/about-linyue/"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "km",
+   "url": "https://iistostas.github.io/km/",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "ស្នាមម្រាមដៃកម្មវិធីរុករកជាអ្វី?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ស្នាមម្រាមដៃកម្មវិធីរុករកជាសម្គាល់ដែលបង្កើតដោយផ្សំលក្ខណៈដែលកម្មវិធីរុករក និងឧបករណ៍របស់អ្នកបង្ហាញ (user agent, អេក្រង់, តំបន់ពេលវេលា, ពុម្ពអក្សរ, ការបង្ហាញ canvas/WebGL ។ល។)។ ទោះគ្មាន cookie ក៏គេហទំព័រអាចសម្គាល់កម្មវិធីរុករកដដែលឆ្លងការចូលមើលបាន។"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ឧបករណ៍ពិនិត្យនេះមានសុវត្ថិភាពទេ? តើវាបញ្ជូនទិន្នន័យរបស់ខ្ញុំទេ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ទេ។ ការអាន និងការគណនាទាំងអស់កើតឡើងក្នុងម៉ាស៊ីនកម្មវិធីរុករកដោយ JavaScript លទ្ធផលបង្ហាញតែលើទំព័រនេះ មិនបញ្ជូនទៅម៉ាស៊ីនបម្រើណាមួយ ឬរក្សាទុកឡើយ។"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ហេតុអ្វីស្នាមម្រាមដៃរបស់ខ្ញុំតែមួយគត់?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "លក្ខណៈតែមួយ (ដូចជាតំបន់ពេលវេលា) មានមនុស្សដូចគ្នាច្រើន ប៉ុន្តែលក្ខណៈរាប់សិបផ្សំគ្នាបង្កើតលំហតម្លៃធំសម្បើម។ ការស្រាវជ្រាវសាធារណៈបង្ហាញថាកម្មវិធីរុករកភាគច្រើនមានស្នាមម្រាមដៃរួមតែមួយគត់ ដូច្នេះអាចត្រូវតាមដានឆ្លងគេហទំព័រដោយមិនបាច់ចូលគណនី។"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "ស្នាមម្រាមដៃ canvas ជាអ្វី?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "កម្មវិធីរុករកគូរអក្សរ ឬរូបដូចគ្នាទៅក្នុង canvas លាក់ រួចអាន pixel ត្រឡប់មកវិញ។ GPU, driver, ពុម្ពអក្សរប្រព័ន្ធ និង anti-aliasing ខុសគ្នាបង្កើតភាពខុសគ្នាតិចតែស្ថិតស្ថេរ ធ្វើឱ្យ canvas ជាសញ្ញាដែលសម្គាល់ខ្លាំងបំផុតមួយ។"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "របៀបអនាមិក (incognito) លាក់ស្នាមម្រាមដៃបានទេ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ភាគច្រើនមិនបាន។ របៀបឯកជនលុប cookie និងប្រវត្តិក្នុងម៉ាស៊ីនជាចម្បង ប៉ុន្តែ canvas, WebGL, ពុម្ពអក្សរ, តំបន់ពេលវេលា នៅតែបង្ហាញ ដូច្នេះរបៀបឯកជនតែឯងមិនអាចគេចពីការតាមដានស្នាមម្រាមដៃបានទេ។"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "តើធ្វើដូចម្ដេចដើម្បីកាត់បន្ថយការតាមដានស្នាមម្រាមដៃ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "អ្នកអាចបន្ថយការបង្ហាញ (ប្រើការកំណត់ទូទៅ បិទ API មួយចំនួន) ឬប្រើកម្មវិធីរុករកប្រឆាំងការរកឃើញសម្រាប់គណនីច្រើន — វាផ្ដល់ស្នាមម្រាមដៃដាច់ដោយឡែក គ្រប់គ្រងបាន និងស៊ីសង្វាក់គ្នាដល់ profile នីមួយៗ ដើម្បីកុំឱ្យគណនីភ្ជាប់គ្នា។"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "VPN អាចប្ដូរស្នាមម្រាមដៃរបស់ខ្ញុំបានទេ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "មិនបានទេ។ VPN ប្ដូរតែ IP ចេញ មិនប្ដូរ canvas, ពុម្ពអក្សរ, តំបន់ពេលវេលា ឬ user-agent ឡើយ ដូច្នេះប្ដូរ IP ហើយស្នាមម្រាមដៃនៅដដែល។"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body><div class="wrap"><main>
+<nav class="lang">Language: <a href="/">简体中文</a> · <a href="/zh-tw/">繁體中文</a> · <a href="/en/">English</a> · <a href="/ja/">日本語</a> · <a href="/id/">Bahasa Indonesia</a> · <a href="/th/">ไทย</a> · <a href="/vi/">Tiếng Việt</a> · <a href="/ms/">Bahasa Melayu</a> · <a href="/fil/">Filipino</a> · <strong>ភាសាខ្មែរ</strong> · <a href="/lo/">ພາສາລາວ</a> · <a href="/my/">မြန်မာ</a></nav>
+<h1>ឧបករណ៍ពិនិត្យស្នាមម្រាមដៃកម្មវិធីរុករក</h1>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/cover_km.webp"><img src="/img/cover_km.png" alt="រូបឧបករណ៍ពិនិត្យស្នាមម្រាមដៃកម្មវិធីរុករក" fetchpriority="high" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>រូប៖ ឧបករណ៍ពិនិត្យស្នាមម្រាមដៃ (canvas / WebGL / ពុម្ពអក្សរ / តំបន់ពេលវេលា / entropy)</figcaption></figure>
+<p>ចុចប៊ូតុងដើម្បីអានសញ្ញាស្នាមម្រាមដៃដែលកម្មវិធីរុករករបស់អ្នកបង្ហាញដោយស្ងាត់ៗ — canvas, WebGL, ពុម្ពអក្សរដែលបានដំឡើង, តំបន់ពេលវេលា, អេក្រង់ និង User-Agent — បន្ទាប់មកទទួលលេខសម្គាល់ស្នាមម្រាមដៃរួម ហើយមើលថាសញ្ញានីមួយៗអាចសម្គាល់អ្នកបានងាយប៉ុណ្ណា។ អ្វីៗត្រូវបានគណនាក្នុងម៉ាស៊ីនកម្មវិធីរុករករបស់អ្នក <strong>មិនមានទិន្នន័យត្រូវបញ្ជូនឡើយ</strong>។</p>
+<div class="tool"><button id="run" type="button">ពិនិត្យស្នាមម្រាមដៃរបស់ខ្ញុំ</button><div class="note">ឧបករណ៍នេះដំណើរការទាំងស្រុងក្នុងកម្មវិធីរុករករបស់អ្នក។ មិនបញ្ជូន ឬរក្សាទុកទិន្នន័យឡើយ។</div><div id="fp"></div></div>
+<h2>សញ្ញាដែលបង្កើតស្នាមម្រាមដៃកម្មវិធីរុករក</h2>
+<p>គេហទំព័រមិនត្រូវការ cookie ឡើយ៖ គ្រាន់តែប្រមូលចម្លើយដែលមើលទៅគ្មានគ្រោះថ្នាក់ពីកម្មវិធីរុករក ក៏អាចផ្គុំជាសម្គាល់ដ៏ស្ថិតស្ថេរបាន។ សញ្ញាទូទៅរួមមានភាពខុសគ្នាតិចតួចនៃ GPU និង driver ពេលបង្ហាញ <code>canvas</code>/<code>WebGL</code>, បញ្ជីពុម្ពអក្សរដែលដំឡើង, តំបន់ពេលវេលា, គុណភាពអេក្រង់ និងជម្រៅពណ៌, ភាសា, ចំនួនស្នូល CPU, អង្គចងចាំឧបករណ៍ និងការគាំទ្រការប៉ះ។ តម្លៃនីមួយៗមិនមែនតែមួយគត់ ប៉ុន្តែ<strong>ពេលផ្សំគ្នា</strong>ភាគច្រើនក្លាយជាតែមួយគត់។</p>
+<figure><svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="រូប 1៖ របៀបដែលគេហទំព័រផ្គុំស្នាមម្រាមដៃពីសញ្ញាដែលកម្មវិធីរុករកឆ្លើយ ដោយមិនប្រើ cookie"><rect x="2" y="2" width="756" height="146" rx="14" fill="#f6f8ff" stroke="#dbe3ff"/><g font-family="system-ui,Arial" font-size="12.5" fill="#16181d"><rect x="22" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="34" y="58" font-weight="700" fill="#3370ff">canvas / WebGL</text><text x="34" y="80">fonts · timezone</text><text x="34" y="98">screen · UA · CPU</text><path d="M178 75 H236" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="240" y="46" width="150" height="58" rx="10" fill="#eaf0ff" stroke="#bcccff"/><text x="258" y="72" font-weight="700">hash / combine</text><text x="300" y="92">join</text><path d="M396 75 H454" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="458" y="34" width="150" height="82" rx="10" fill="#fff" stroke="#bcccff"/><text x="470" y="58" font-weight="700" fill="#3370ff">fingerprint ID</text><text x="470" y="80">stable across</text><text x="470" y="98">visits, no cookie</text><path d="M614 75 H672" stroke="#3370ff" stroke-width="2" marker-end="url(#a)"/><rect x="676" y="46" width="62" height="58" rx="10" fill="#fff5e6" stroke="#ffd28a"/><text x="690" y="80" font-weight="700" fill="#b8730a">track</text></g><defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="#3370ff"/></marker></defs></svg><figcaption>រូប 1៖ របៀបដែលគេហទំព័រផ្គុំស្នាមម្រាមដៃពីសញ្ញាដែលកម្មវិធីរុករកឆ្លើយ ដោយមិនប្រើ cookie</figcaption></figure>
+<h2>សញ្ញានីមួយៗសម្គាល់បានខ្លាំងប៉ុណ្ណា (entropy)</h2>
+<p>Entropy វាស់បរិមាណព័ត៌មានសម្គាល់ដែលសញ្ញាមួយផ្ទុក (ជា bit — កាន់តែខ្ពស់ កាន់តែញែកមនុស្សបាន)។ Panopticlick របស់ EFF វាស់បានជាមធ្យមប្រហែល <strong>18.1 bit</strong> ដោយស្នាមម្រាមដៃប្រហែល 83.6% តែមួយគត់ រីឯ AmIUnique (Laperdrix et al., 2016) រកឃើញប្រហែល 89.4% តែមួយគត់ក្នុងគំរូ 118,000។ តារាងខាងក្រោមផ្ដល់<strong>ការប៉ាន់ស្មានប្រហាក់ប្រហែលក្នុងសញ្ញានីមួយៗ</strong>ដែលសរុបពីការស្រាវជ្រាវសាធារណៈនោះ។</p>
+<figure class="i4png"><picture><source type="image/webp" srcset="/img/board_km.webp"><img src="/img/board_km.png" alt="កម្លាំងសម្គាល់ប្រៀបធៀបនៃសញ្ញាស្នាមម្រាមដៃ" loading="lazy" width="1120" height="746" style="width:100%;height:auto;border-radius:12px;border:1px solid #e7eaf3"></picture><figcaption>រូប៖ តម្លៃនីមួយៗមិនតែមួយគត់ ប៉ុន្តែផ្សំគ្នាជាធម្មតាតែមួយគត់ — នេះជារបៀបតាមដានស្នាមម្រាមដៃ</figcaption></figure>
+<figure><svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="រូប 2៖ កម្លាំងសម្គាល់ប្រៀបធៀប (entropy) នៃសញ្ញានីមួយៗ — ពេលផ្សំគ្នាជាធម្មតាគ្រប់គ្រាន់ដើម្បីកំណត់អ្នក"><rect x="2" y="2" width="756" height="218" rx="14" fill="#fcfdff" stroke="#dbe3ff"/><g font-family="system-ui,Arial"><text x="14" y="37" font-size="12" fill="#5a6072">UA</text><rect x="120" y="26" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="26" width="570" height="14" rx="7" fill="#3370ff" opacity="0.74"/><text x="14" y="63" font-size="12" fill="#5a6072">canvas</text><rect x="120" y="52" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="52" width="520" height="14" rx="7" fill="#3370ff" opacity="0.71"/><text x="14" y="89" font-size="12" fill="#5a6072">WebGL</text><rect x="120" y="78" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="78" width="471" height="14" rx="7" fill="#3370ff" opacity="0.69"/><text x="14" y="115" font-size="12" fill="#5a6072">fonts</text><rect x="120" y="104" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="104" width="434" height="14" rx="7" fill="#3370ff" opacity="0.67"/><text x="14" y="141" font-size="12" fill="#5a6072">screen</text><rect x="120" y="130" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="130" width="285" height="14" rx="7" fill="#3370ff" opacity="0.59"/><text x="14" y="167" font-size="12" fill="#5a6072">timezone</text><rect x="120" y="156" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="156" width="223" height="14" rx="7" fill="#3370ff" opacity="0.56"/><text x="14" y="193" font-size="12" fill="#5a6072">lang</text><rect x="120" y="182" width="620" height="14" rx="7" fill="#eef2ff"/><rect x="120" y="182" width="161" height="14" rx="7" fill="#3370ff" opacity="0.53"/></g></svg><figcaption>រូប 2៖ កម្លាំងសម្គាល់ប្រៀបធៀប (entropy) នៃសញ្ញានីមួយៗ — ពេលផ្សំគ្នាជាធម្មតាគ្រប់គ្រាន់ដើម្បីកំណត់អ្នក</figcaption></figure>
+<section class="i4data" id="i4data">
+<h2>Entropy ស្នាមម្រាមដៃតាមសញ្ញា (ការប៉ាន់ស្មាន 2026)</h2>
+<p>ខាងក្រោមនេះជា<strong>ការប៉ាន់ស្មានឆ្នាំ 2026</strong> ដែលសរុបពីការស្រាវជ្រាវស្នាមម្រាមដៃសាធារណៈ (EFF Panopticlick 2010, AmIUnique 2016) បង្ហាញបរិមាណព័ត៌មានសម្គាល់ប្រហាក់ប្រហែលក្នុងសញ្ញានីមួយៗ៖ <em>ការប៉ាន់ស្មាន មិនមែនការវាស់ផ្ទាល់ សម្រាប់យោងតែប៉ុណ្ណោះ។</em></p>
+<table><tr><th>សញ្ញា</th><th>Entropy ប៉ាន់ស្មាន (bit)</th><th>មូលដ្ឋាន</th></tr>
+<tr><td>User-Agent</td><td>~9-10</td><td>Panopticlick</td></tr>
+<tr><td>Hash canvas</td><td>~8-9</td><td>AmIUnique</td></tr>
+<tr><td>អ្នកបង្ហាញ WebGL</td><td>~7-8</td><td>AmIUnique</td></tr>
+<tr><td>ពុម្ពអក្សររកឃើញ</td><td>~6-8</td><td>Panopticlick</td></tr>
+<tr><td>អេក្រង់ និងជម្រៅពណ៌</td><td>~4-5</td><td>Panopticlick</td></tr>
+<tr><td>តំបន់ពេលវេលា</td><td>~3-4</td><td>Panopticlick</td></tr>
+<tr><td>ភាសា</td><td>~2-3</td><td>Panopticlick</td></tr>
+</table>
+</section>
+<h2>សំណួរសួរញឹកញាប់</h2>
+<details class="faq"><summary><strong>ស្នាមម្រាមដៃកម្មវិធីរុករកជាអ្វី?</strong></summary>
+<p>ស្នាមម្រាមដៃកម្មវិធីរុករកជាសម្គាល់ដែលបង្កើតដោយផ្សំលក្ខណៈដែលកម្មវិធីរុករក និងឧបករណ៍របស់អ្នកបង្ហាញ (user agent, អេក្រង់, តំបន់ពេលវេលា, ពុម្ពអក្សរ, ការបង្ហាញ canvas/WebGL ។ល។)។ ទោះគ្មាន cookie ក៏គេហទំព័រអាចសម្គាល់កម្មវិធីរុករកដដែលឆ្លងការចូលមើលបាន។</p></details>
+<details class="faq"><summary><strong>ឧបករណ៍ពិនិត្យនេះមានសុវត្ថិភាពទេ? តើវាបញ្ជូនទិន្នន័យរបស់ខ្ញុំទេ?</strong></summary>
+<p>ទេ។ ការអាន និងការគណនាទាំងអស់កើតឡើងក្នុងម៉ាស៊ីនកម្មវិធីរុករកដោយ JavaScript លទ្ធផលបង្ហាញតែលើទំព័រនេះ មិនបញ្ជូនទៅម៉ាស៊ីនបម្រើណាមួយ ឬរក្សាទុកឡើយ។</p></details>
+<details class="faq"><summary><strong>ហេតុអ្វីស្នាមម្រាមដៃរបស់ខ្ញុំតែមួយគត់?</strong></summary>
+<p>លក្ខណៈតែមួយ (ដូចជាតំបន់ពេលវេលា) មានមនុស្សដូចគ្នាច្រើន ប៉ុន្តែលក្ខណៈរាប់សិបផ្សំគ្នាបង្កើតលំហតម្លៃធំសម្បើម។ ការស្រាវជ្រាវសាធារណៈបង្ហាញថាកម្មវិធីរុករកភាគច្រើនមានស្នាមម្រាមដៃរួមតែមួយគត់ ដូច្នេះអាចត្រូវតាមដានឆ្លងគេហទំព័រដោយមិនបាច់ចូលគណនី។</p></details>
+<details class="faq"><summary><strong>ស្នាមម្រាមដៃ canvas ជាអ្វី?</strong></summary>
+<p>កម្មវិធីរុករកគូរអក្សរ ឬរូបដូចគ្នាទៅក្នុង canvas លាក់ រួចអាន pixel ត្រឡប់មកវិញ។ GPU, driver, ពុម្ពអក្សរប្រព័ន្ធ និង anti-aliasing ខុសគ្នាបង្កើតភាពខុសគ្នាតិចតែស្ថិតស្ថេរ ធ្វើឱ្យ canvas ជាសញ្ញាដែលសម្គាល់ខ្លាំងបំផុតមួយ។</p></details>
+<details class="faq"><summary><strong>របៀបអនាមិក (incognito) លាក់ស្នាមម្រាមដៃបានទេ?</strong></summary>
+<p>ភាគច្រើនមិនបាន។ របៀបឯកជនលុប cookie និងប្រវត្តិក្នុងម៉ាស៊ីនជាចម្បង ប៉ុន្តែ canvas, WebGL, ពុម្ពអក្សរ, តំបន់ពេលវេលា នៅតែបង្ហាញ ដូច្នេះរបៀបឯកជនតែឯងមិនអាចគេចពីការតាមដានស្នាមម្រាមដៃបានទេ។</p></details>
+<details class="faq"><summary><strong>តើធ្វើដូចម្ដេចដើម្បីកាត់បន្ថយការតាមដានស្នាមម្រាមដៃ?</strong></summary>
+<p>អ្នកអាចបន្ថយការបង្ហាញ (ប្រើការកំណត់ទូទៅ បិទ API មួយចំនួន) ឬប្រើកម្មវិធីរុករកប្រឆាំងការរកឃើញសម្រាប់គណនីច្រើន — វាផ្ដល់ស្នាមម្រាមដៃដាច់ដោយឡែក គ្រប់គ្រងបាន និងស៊ីសង្វាក់គ្នាដល់ profile នីមួយៗ ដើម្បីកុំឱ្យគណនីភ្ជាប់គ្នា។</p></details>
+<details class="faq"><summary><strong>VPN អាចប្ដូរស្នាមម្រាមដៃរបស់ខ្ញុំបានទេ?</strong></summary>
+<p>មិនបានទេ។ VPN ប្ដូរតែ IP ចេញ មិនប្ដូរ canvas, ពុម្ពអក្សរ, តំបន់ពេលវេលា ឬ user-agent ឡើយ ដូច្នេះប្ដូរ IP ហើយស្នាមម្រាមដៃនៅដដែល។</p></details>
+<div class="sources"><h2>ឯកសារយោង (ការស្រាវជ្រាវសាធារណៈ)</h2><ul><li><a href="https://coveryourtracks.eff.org/" rel="nofollow noopener" target="_blank">EFF - Cover Your Tracks / Panopticlick</a></li><li><a href="https://amiunique.org/" rel="nofollow noopener" target="_blank">AmIUnique - browser fingerprint research</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" rel="nofollow noopener" target="_blank">MDN - Navigator (browser APIs)</a></li></ul></div>
+<div class="related"><h2>ពាក់ព័ន្ធ</h2>
+<p><a href="https://bitantidetect.com/download/">ទាញយក BitBrowser (កម្មវិធីរុករកស្នាមម្រាមដៃ/ប្រឆាំងការភ្ជាប់)</a></p></div>
+</main>
+<footer>គោលការណ៍ស្នាមម្រាមដៃ និងលេខ entropy លើទំព័រនេះសរុបពីការស្រាវជ្រាវសាធារណៈខាងក្រោម ឧបករណ៍អានលក្ខណៈពិតនៃកម្មវិធីរុករករបស់អ្នកផ្ទាល់។ អ្នកនិពន្ធ៖ Lin Yue (林越)។<br><a href="/about-linyue/">林越</a> · bitantidetect.com · MIT License</footer>
+</div>
+<script>window.FPL={"idlbl": "លេខសម្គាល់ស្នាមម្រាមដៃរួមរបស់អ្នក", "uniq": "ភាពតែមួយគត់", "uniqval": "ការផ្សំតម្លៃនេះទំនងជាអាចសម្គាល់បាន — តម្លៃរបស់អ្នកកាន់តែមិនធម្មតា អ្នកកាន់តែងាយត្រូវញែកចេញពីហ្វូងមនុស្ស។", "run": "ពិនិត្យស្នាមម្រាមដៃរបស់ខ្ញុំ", "note": "ឧបករណ៍នេះដំណើរការទាំងស្រុងក្នុងកម្មវិធីរុករករបស់អ្នក។ មិនបញ្ជូន ឬរក្សាទុកទិន្នន័យឡើយ។", "dim": {"ua": "User-Agent", "platform": "វេទិកា / ប្រព័ន្ធ", "langs": "ភាសា", "screen": "អេក្រង់ និងជម្រៅពណ៌", "tz": "តំបន់ពេលវេលា", "cpu": "ស្នូល CPU", "mem": "អង្គចងចាំឧបករណ៍", "touch": "ចំណុចប៉ះ", "canvas": "Hash canvas", "webglv": "អ្នកផលិត WebGL", "webglr": "អ្នកបង្ហាញ WebGL", "fonts": "ពុម្ពអក្សររកឃើញ", "audio": "អត្រាគំរូសំឡេង", "cookie": "Cookie ប្រើបាន", "dnt": "Do Not Track", "fpid": "លេខសម្គាល់ស្នាមម្រាមដៃរួម"}, "yes": "បាទ/ចាស", "no": "ទេ", "na": "n/a"};</script>
+<script src="/app.js"></script></body></html>
